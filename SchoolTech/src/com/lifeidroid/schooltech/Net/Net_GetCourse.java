@@ -13,7 +13,7 @@ import com.lifeidroid.schooltech.Mdl.Mdl_Course;
 public class Net_GetCourse {
 	private List<Mdl_Course> list = new ArrayList<Mdl_Course>();
 
-	public Net_GetCourse(String email, String token, int schoolId, int deptId,
+	public Net_GetCourse(String action,String email, String token, int schoolId, int deptId,
 			int page, int perpage, final SuccessCallback successCallback,
 			final FailCallback failCallback) {
 		new NetConnection(Config.URL, HttpMethod.POST,
@@ -81,7 +81,7 @@ public class Net_GetCourse {
 						}
 
 					}
-				}, Config.KEY_ACTION, Config.ACTION_GETNEWCOURSE,
+				}, Config.KEY_ACTION, action,
 				Config.KEY_EMAILMD5, email, Config.KEY_TOKEN, token,
 				Config.KEY_SCHOOLID, schoolId + "", Config.KEY_DEPTID, deptId
 						+ "", Config.KEY_PAGE, page + "", Config.KEY_PERPAGE,

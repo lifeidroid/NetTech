@@ -43,6 +43,10 @@ public class Config {
 	public static final String KEY_COURSELOGO = "courselogo";
 	public static final String KEY_GRADE = "grade";
 	public static final String KEY_STUDENTNUM = "studentnum";
+	public static final String ACTION_GETDEPT = "getdept";
+	public static final String KEY_DEPTNAME = "deptname";
+	public static final String ACTION_GETHOTCOURSE = "gethotcourse";
+	public static final String ACTION_GETRECOMMENDCOURSE = "getrecommendcourse";
 
 	/**
 	 * 存取Email

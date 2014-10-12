@@ -3,10 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-   <ListView android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       android:dividerHeight="2dp"
-       android:divider="@color/dark_Gray"
-       android:id="@+id/lv_course"/> 
+
+    <com.lifeidroid.schooltech.Tools.RTPullListView
+        android:id="@+id/lv_course"
+        android:layout_width="fill_parent"
+        android:dividerHeight="2dp"
+        android:divider="@color/dark_Gray"
+        android:layout_height="fill_parent" />
+
 
 </LinearLayout>

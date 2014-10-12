@@ -61,6 +61,7 @@ public class Adp_Course extends BaseAdapter {
 			layout.setTag(viewHolder);
 		}
 		viewHolder = (ViewHolder)layout.getTag();
+		System.out.println("----->po"+position);
 		viewHolder.getTv_courseName().setText(list.get(position).getCourseName());
 		viewHolder.getTv_techName().setText("教师："+list.get(position).getTechName());
 		viewHolder.getRb_grade().setRating(list.get(position).getGarde());

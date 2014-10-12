@@ -2,19 +2,21 @@ package com.lifeidroid.schooltech.Aty;
 
 import java.util.List;
 
-import com.lifeidroid.schooltech.Config;
-import com.lifeidroid.schooltech.R;
-import com.lifeidroid.schooltech.Mdl.Mdl_Course;
-import com.lifeidroid.schooltech.Net.Net_GetCourse;
-
-import android.R.interpolator;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
+
+import com.lifeidroid.schooltech.Config;
+import com.lifeidroid.schooltech.R;
+import com.lifeidroid.schooltech.Mdl.Mdl_Course;
+import com.lifeidroid.schooltech.Net.Net_GetCourse;
+import com.lifeidroid.schooltech.Tools.RTPullListView;
+import com.lifeidroid.schooltech.Tools.RTPullListView.OnRefreshListener;
 
 public class Frg_Course_New extends Fragment {
 	private View view;
@@ -25,7 +27,7 @@ public class Frg_Course_New extends Fragment {
 	private String token;
 	private Bundle bundle;
 	private Adp_Course adp_Course;
-	private ListView lv_newcourse;
+	private RTPullListView lv_newcourse;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,9 +51,9 @@ public class Frg_Course_New extends Fragment {
 		adp_Course = new Adp_Course(getActivity(), cachePath);
 	}
 	private void initViews(){
-		lv_newcourse = (ListView) view.findViewById(R.id.lv_course);
+		lv_newcourse = (RTPullListView) view.findViewById(R.id.lv_course);
 		lv_newcourse.setAdapter(adp_Course);
-		new Net_GetCourse(email, token, default_schoolId, default_deptId, 1, 20, new Net_GetCourse.SuccessCallback() {
+		new Net_GetCourse(Config.ACTION_GETNEWCOURSE,email, token, default_schoolId, default_deptId, 1, 20, new Net_GetCourse.SuccessCallback() {
 			
 			@Override
 			public void onSuccess(List<Mdl_Course> list) {
@@ -69,6 +71,22 @@ public class Frg_Course_New extends Fragment {
 		});
 	}
 	private void initListener(){
-		
+		lv_newcourse.setonRefreshListener(new OnRefreshListener() {
+			
+			@Override
+			public void onRefresh() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		lv_newcourse.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				lv_newcourse.onRefreshComplete();
+				
+			}
+		});
 	}
 }

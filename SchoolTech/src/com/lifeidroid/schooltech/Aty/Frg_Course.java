@@ -1,5 +1,6 @@
 package com.lifeidroid.schooltech.Aty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Fragment;
@@ -18,9 +19,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
+import com.lifeidroid.schooltech.Mdl.Mdl_Dept;
 import com.lifeidroid.schooltech.Mdl.Mdl_School;
+import com.lifeidroid.schooltech.Net.Net_GetDept;
 import com.lifeidroid.schooltech.Net.Net_GetSchool;
 
 public class Frg_Course extends Fragment {
@@ -31,17 +35,24 @@ public class Frg_Course extends Fragment {
 	private String cachePath;
 	private String default_schoolName;
 	private int default_schoolID;
+	private int menu_cacheSchoolID;
 	private int default_deptID;
 	private boolean switch_School;
+	private boolean switch_slidingmenu;
+	private boolean Visible;
+	private List<Mdl_Dept> deptList = new ArrayList<Mdl_Dept>();
 	private Adp_School adp_School;
 	private Mdl_School mdl_School;
+	private Mdl_Dept mdl_Dept;
 	private FragmentManager fManager;
 	private FragmentTransaction fTransaction;
 	private Frg_Course_New frg_Course_New;
-	private Frg_Course_Hot frg_Course_Hot ;
+	private Frg_Course_Hot frg_Course_Hot;
 	private Frg_Course_Recommend fCourse_Recommend;
+	private Adp_Dept adp_Dept;
 
 	private LinearLayout lay_shool_select;
+	private SlidingMenu slidingMenu;
 	private ImageView iv_arrow;
 	private TextView tv_schoolName;
 	private ImageView iv_search;
@@ -49,6 +60,7 @@ public class Frg_Course extends Fragment {
 	private LinearLayout lay_course_main;
 	private ListView lv_school;
 	private RadioGroup rg_selectCouse;
+	private ListView lv_dept;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +80,9 @@ public class Frg_Course extends Fragment {
 	private void initValues() {
 		bundle = getArguments();
 		switch_School = false;
+		Visible = true;
+		switch_slidingmenu = false;
+		menu_cacheSchoolID = -1;
 		email = bundle.getString(Config.KEY_EMAILMD5);
 		token = bundle.getString(Config.KEY_TOKEN);
 		cachePath = bundle.getString(Config.KEY_CACHEPATH);
@@ -77,6 +92,7 @@ public class Frg_Course extends Fragment {
 		fManager = getActivity().getFragmentManager();
 
 		adp_School = new Adp_School(getActivity(), cachePath);
+		adp_Dept = new Adp_Dept(getActivity());
 	}
 
 	private void initView() {
@@ -106,6 +122,20 @@ public class Frg_Course extends Fragment {
 		frg_Course_New.setArguments(bundle);
 		fTransaction.replace(R.id.lay_course_container, frg_Course_New);
 		fTransaction.commit();
+
+		// 侧拉菜单的基本配置
+		slidingMenu = new SlidingMenu(getActivity());
+		slidingMenu.setMode(SlidingMenu.RIGHT); // 设置左侧呼出
+		slidingMenu.setBehindOffset((getActivity().getWindowManager()
+				.getDefaultDisplay().getWidth() / 3) * 1); // 设置菜单的宽度
+		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		slidingMenu
+				.attachToActivity(getActivity(), SlidingMenu.SLIDING_CONTENT);
+		slidingMenu.setMenu(R.layout.slidingmenu);
+		slidingMenu.setFadeDegree(0.35f);
+		lv_dept = (ListView) getActivity().findViewById(R.id.lv_slidmenu_dept);
+		lv_dept.setAdapter(adp_Dept);
+
 	}
 
 	private void initListener() {
@@ -177,8 +207,10 @@ public class Frg_Course extends Fragment {
 							bundle.putString(Config.KEY_EMAILMD5, email);
 							bundle.putString(Config.KEY_TOKEN, token);
 							bundle.putString(Config.KEY_CACHEPATH, cachePath);
-							bundle.putInt(Config.KEY_DEFAULT_DEPTID, default_deptID);
-							bundle.putInt(Config.KEY_DEFAULT_SCHOOLID, default_schoolID);
+							bundle.putInt(Config.KEY_DEFAULT_DEPTID,
+									default_deptID);
+							bundle.putInt(Config.KEY_DEFAULT_SCHOOLID,
+									default_schoolID);
 							frg_Course_New.setArguments(bundle);
 							fTransaction.replace(R.id.lay_course_container,
 									frg_Course_New);
@@ -189,8 +221,10 @@ public class Frg_Course extends Fragment {
 							bundle.putString(Config.KEY_EMAILMD5, email);
 							bundle.putString(Config.KEY_TOKEN, token);
 							bundle.putString(Config.KEY_CACHEPATH, cachePath);
-							bundle.putInt(Config.KEY_DEFAULT_DEPTID, default_deptID);
-							bundle.putInt(Config.KEY_DEFAULT_SCHOOLID, default_schoolID);
+							bundle.putInt(Config.KEY_DEFAULT_DEPTID,
+									default_deptID);
+							bundle.putInt(Config.KEY_DEFAULT_SCHOOLID,
+									default_schoolID);
 							frg_Course_Hot.setArguments(bundle);
 							fTransaction.replace(R.id.lay_course_container,
 									frg_Course_Hot);
@@ -201,8 +235,10 @@ public class Frg_Course extends Fragment {
 							bundle.putString(Config.KEY_EMAILMD5, email);
 							bundle.putString(Config.KEY_TOKEN, token);
 							bundle.putString(Config.KEY_CACHEPATH, cachePath);
-							bundle.putInt(Config.KEY_DEFAULT_DEPTID, default_deptID);
-							bundle.putInt(Config.KEY_DEFAULT_SCHOOLID, default_schoolID);
+							bundle.putInt(Config.KEY_DEFAULT_DEPTID,
+									default_deptID);
+							bundle.putInt(Config.KEY_DEFAULT_SCHOOLID,
+									default_schoolID);
 							fCourse_Recommend.setArguments(bundle);
 							fTransaction.replace(R.id.lay_course_container,
 									fCourse_Recommend);
@@ -212,5 +248,84 @@ public class Frg_Course extends Fragment {
 
 					}
 				});
+		slidingMenu.setOnOpenedListener(new SlidingMenu.OnOpenedListener() {
+
+			@Override
+			public void onOpened() {
+				if (switch_slidingmenu) {
+					return;
+				}
+				if (default_schoolID == menu_cacheSchoolID) {
+					return;
+				}
+				menu_cacheSchoolID = default_schoolID;
+				new Net_GetDept(email, token, default_schoolID,
+						new Net_GetDept.SuccessCallback() {
+
+							@Override
+							public void onSuccess(List<Mdl_Dept> list) {
+								deptList.clear();
+								deptList.addAll(list);
+								adp_Dept.clear();
+								adp_Dept.addAll(deptList, default_deptID);
+
+							}
+						}, new Net_GetDept.FailCallback() {
+
+							@Override
+							public void onFail(int error) {
+								Toast.makeText(getActivity(),
+										R.string.fail_to_getdept_list,
+										Toast.LENGTH_SHORT);
+
+							}
+						});
+
+			}
+		});
+
+		slidingMenu.setOnClosedListener(new SlidingMenu.OnClosedListener() {
+
+			@Override
+			public void onClosed() {
+				switch_slidingmenu = false;
+
+			}
+		});
+		// 菜单按钮
+		iv_menu.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				slidingMenu.toggle();
+			}
+		});
+		lv_dept.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				if (!Visible) {
+					return;
+				}
+				mdl_Dept = (Mdl_Dept) adp_Dept.getItem(arg2);
+				default_deptID = mdl_Dept.getDeptId();
+				Config.cacheDefaultDeptId(getActivity(), default_deptID);
+				adp_Dept.clear();
+				adp_Dept.addAll(deptList, default_deptID);
+				slidingMenu.toggle();
+			}
+		});
+
+	}
+	@Override
+	public void onResume() {
+		Visible = true;
+		super.onResume();
+	}
+	@Override
+	public void onPause() {
+		Visible = false;
+		super.onPause();
 	}
 }
