@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="White">#ffffff</color>
-    <color name="Gray">#eeeeee</color>
-    <color name="dark_Gray">#e5e5e5</color>
-    <color name="light_Blank">#434343</color>
-    <color name="Bule">#00abee</color>
-    <color name="light_Bule">#33CCFF</color>
-</resources>
