@@ -191,6 +191,8 @@ public class Frg_Course extends Fragment {
 				switch_School = false;
 				iv_arrow.setImageResource(R.drawable.img_arrow_down);
 				lay_course_main.setVisibility(View.VISIBLE);
+				default_deptID = Config.ALLDEPT;
+				Config.cacheDefaultDeptId(getActivity(), default_deptID);
 
 			}
 		});

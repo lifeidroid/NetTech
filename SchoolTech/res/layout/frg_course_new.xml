@@ -4,12 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.lifeidroid.schooltech.Tools.RTPullListView
+    <com.lifeidroid.schooltech.Tools.ListViewFrame
         android:id="@+id/lv_course"
         android:layout_width="fill_parent"
-        android:dividerHeight="2dp"
+        android:layout_height="fill_parent"
         android:divider="@color/dark_Gray"
-        android:layout_height="fill_parent" />
-
+        android:dividerHeight="2dp"
+        android:fadingEdge="none"
+        android:persistentDrawingCache="none"
+        android:scrollbars="none"
+        android:scrollingCache="false"
+        android:smoothScrollbar="true" />
 
 </LinearLayout>
