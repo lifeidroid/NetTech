@@ -11,9 +11,11 @@
 
         <ProgressBar
             android:id="@+id/listview_footer_progressbar"
+            style="@style/myProgressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:indeterminateDuration="700"
             android:visibility="invisible" />
 
         <TextView
@@ -21,8 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textColor="@color/light_Blank"
-             />
+            android:textColor="@color/light_Blank" />
     </RelativeLayout>
 
 </LinearLayout>

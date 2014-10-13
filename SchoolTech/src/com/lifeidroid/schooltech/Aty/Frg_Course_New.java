@@ -63,6 +63,7 @@ public class Frg_Course_New extends Fragment implements
 	private void initViews() {
 		lv_newcourse = (ListViewFrame) view.findViewById(R.id.lv_course);
 		lv_newcourse.setPullLoadEnable(true);
+		lv_newcourse.setPullRefreshEnable(true);
 		lv_newcourse.setXListViewListener(this);
 		lv_newcourse.setAdapter(adp_Course);
 		loadMessage(Config.REFRESH);

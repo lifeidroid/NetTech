@@ -47,8 +47,7 @@
                     android:id="@+id/lv_slidmenu_dept"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                   >
-
+                    android:layoutAnimation="@anim/anim_listview" >
                 </ListView>
             </FrameLayout>
         </LinearLayout>

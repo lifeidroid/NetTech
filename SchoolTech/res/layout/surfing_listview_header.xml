@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/listview_header_content"
         android:layout_width="fill_parent"
-        android:layout_height="60dp" >
+        android:layout_height="50dp" >
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -38,6 +38,8 @@
             android:id="@+id/xlistview_header_progressbar"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            style="@style/myProgressBarStyleLarge"
+            android:indeterminateDuration="700"
             android:layout_alignLeft="@id/listview_header_text"
             android:layout_centerVertical="true"
             android:layout_marginLeft="-40dp"

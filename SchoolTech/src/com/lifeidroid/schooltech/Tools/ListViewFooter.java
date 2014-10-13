@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.lifeidroid.schooltech.R;
 /**
- * �ײ���ͼ
+ * �ײ���ͼ
  * @author Administrator
  *
  */
@@ -30,6 +30,7 @@ public class ListViewFooter extends LinearLayout {
 	private View mContentView;
 	private View mProgressBar;
 	private TextView mHintView;
+	private LinearLayout moreView;
 	
 	public ListViewFooter(Context context) {
 		super(context);
@@ -52,8 +53,9 @@ public class ListViewFooter extends LinearLayout {
 		} else if (state == STATE_LOADING) {
 			mProgressBar.setVisibility(View.VISIBLE);
 		} else {
-			mHintView.setVisibility(View.GONE);
-//			mHintView.setText(R.string.xlistview_footer_hint_normal);
+			//
+			mHintView.setVisibility(View.VISIBLE);
+			mHintView.setText("上拉加载更多！");
 		}
 	}
 	
@@ -107,7 +109,7 @@ public class ListViewFooter extends LinearLayout {
 	
 	private void initView(Context context) {
 		mContext = context;
-		LinearLayout moreView = (LinearLayout)LayoutInflater.from(mContext).inflate(R.layout.surfing_listview_footer, null);
+		moreView = (LinearLayout)LayoutInflater.from(mContext).inflate(R.layout.surfing_listview_footer, null);
 		addView(moreView);
 		moreView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 		
@@ -116,5 +118,7 @@ public class ListViewFooter extends LinearLayout {
 		mHintView = (TextView)moreView.findViewById(R.id.listview_footer_hint_textview);
 	}
 	
-	
+	public int getVisiableHeight(){
+		return moreView.getHeight();
+	}
 }

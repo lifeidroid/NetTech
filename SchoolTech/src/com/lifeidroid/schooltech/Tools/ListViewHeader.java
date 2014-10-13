@@ -7,6 +7,7 @@
 package com.lifeidroid.schooltech.Tools;
 
 
+import android.R.interpolator;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -21,7 +22,7 @@ import android.widget.TextView;
 
 import com.lifeidroid.schooltech.R;
 /**
- * Í·²¿ÊÓÍ¼
+ * Í·ï¿½ï¿½ï¿½ï¿½Í¼
  * @author Administrator
  *
  */
@@ -60,6 +61,7 @@ public class ListViewHeader extends LinearLayout {
 				LayoutParams.FILL_PARENT, 0);
 		mContainer = (LinearLayout) LayoutInflater.from(context).inflate(
 				R.layout.surfing_listview_header, null);
+
 		addView(mContainer, lp);
 		setGravity(Gravity.BOTTOM);
 
@@ -79,7 +81,7 @@ public class ListViewHeader extends LinearLayout {
 		mRotateDownAnim.setFillAfter(true);
 	}
     /**
-     * ÉèÖÃÍ·²¿ÐÅÏ¢ÏÔÊ¾ÄÚÈÝ
+     * ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
      * @param state
      */
 	public void setState(int state) {
@@ -132,5 +134,6 @@ public class ListViewHeader extends LinearLayout {
 	public int getVisiableHeight() {
 		return mContainer.getHeight();
 	}
+
 
 }

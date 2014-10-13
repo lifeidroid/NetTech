@@ -8,7 +8,6 @@
  */
 package com.lifeidroid.schooltech.Tools;
 
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -23,12 +22,14 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
 import com.lifeidroid.schooltech.R;
+
 /**
- * �ܵ�listview��ͼ
+ * �ܵ�listview��ͼ
+ * 
  * @author Administrator
- *
+ * 
  */
-public class ListViewFrame extends ListView  implements OnScrollListener {
+public class ListViewFrame extends ListView implements OnScrollListener {
 
 	private float mLastY = -1; // save event y
 	private Scroller mScroller; // used for scroll back
@@ -51,7 +52,7 @@ public class ListViewFrame extends ListView  implements OnScrollListener {
 	private boolean mEnablePullLoad;
 	private boolean mPullLoading;
 	private boolean mIsFooterReady = false;
-	
+
 	// total list items, used to detect is at the bottom of listview.
 	private int mTotalItemCount;
 
@@ -61,10 +62,10 @@ public class ListViewFrame extends ListView  implements OnScrollListener {
 	private final static int SCROLLBACK_FOOTER = 1;
 
 	private final static int SCROLL_DURATION = 400; // scroll back duration
-	private final static int PULL_LOAD_MORE_DELTA = 50; // when pull up >= 50px
+	private final static int PULL_LOAD_MORE_DELTA = 0; // when pull up >= 50px
 														// at bottom, trigger
 														// load more.
-	private final static float OFFSET_RADIO = 1.2f; // support iOS like pull
+	private final static float OFFSET_RADIO = 3.0f; // support iOS like pull
 													// feature.
 
 	/**
@@ -148,15 +149,10 @@ public class ListViewFrame extends ListView  implements OnScrollListener {
 			mFooterView.setOnClickListener(null);
 		} else {
 			mPullLoading = false;
-			mFooterView.show();
+			mFooterView.hide();
 			mFooterView.setState(ListViewFooter.STATE_NORMAL);
 			// both "pull up" and "click" will invoke load more.
-			mFooterView.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					startLoadMore();
-				}
-			});
+
 		}
 	}
 
@@ -176,6 +172,7 @@ public class ListViewFrame extends ListView  implements OnScrollListener {
 	public void stopLoadMore() {
 		if (mPullLoading == true) {
 			mPullLoading = false;
+			mFooterView.hide();
 			mFooterView.setState(ListViewFooter.STATE_NORMAL);
 		}
 	}
@@ -190,7 +187,7 @@ public class ListViewFrame extends ListView  implements OnScrollListener {
 	private void updateHeaderHeight(float delta) {
 		mHeaderView.setVisiableHeight((int) delta
 				+ mHeaderView.getVisiableHeight());
-		if (mEnablePullRefresh && !mPullRefreshing) { 
+		if (mEnablePullRefresh && !mPullRefreshing) {
 			if (mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
 				mHeaderView.setState(ListViewHeader.STATE_READY);
 			} else {
@@ -224,6 +221,7 @@ public class ListViewFrame extends ListView  implements OnScrollListener {
 	}
 
 	private void updateFooterHeight(float delta) {
+		mFooterView.show();// 显示尾部
 		int height = mFooterView.getBottomMargin() + (int) delta;
 		if (mEnablePullLoad && !mPullLoading) {
 			if (height > PULL_LOAD_MORE_DELTA) { // height enough to invoke load
@@ -235,7 +233,7 @@ public class ListViewFrame extends ListView  implements OnScrollListener {
 		}
 		mFooterView.setBottomMargin(height);
 
-//		setSelection(mTotalItemCount - 1); // scroll to bottom
+		// setSelection(mTotalItemCount - 1); // scroll to bottom
 	}
 
 	private void resetFooterHeight() {
@@ -274,7 +272,7 @@ public class ListViewFrame extends ListView  implements OnScrollListener {
 				// the first item is showing, header has shown or pull down.
 				updateHeaderHeight(deltaY / OFFSET_RADIO);
 				invokeOnScrolling();
-			} else if (getLastVisiblePosition() == mTotalItemCount - 1
+			} else if (getLastVisiblePosition() >= mTotalItemCount - 1
 					&& (mFooterView.getBottomMargin() > 0 || deltaY < 0)) {
 				// last item, already pulled up or want to pull up.
 				updateFooterHeight(-deltaY / OFFSET_RADIO);
@@ -297,7 +295,10 @@ public class ListViewFrame extends ListView  implements OnScrollListener {
 				// invoke load more.
 				if (mEnablePullLoad
 						&& mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
+
 					startLoadMore();
+				} else {
+
 				}
 				resetFooterHeight();
 			}

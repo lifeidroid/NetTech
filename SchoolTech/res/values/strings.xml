@@ -34,10 +34,11 @@
     <string name="all_dept">所有院系</string>
     <string name="fail_to_getdept_list">获取院系列表失败！</string>
     <string name="listview_header_hint_normal">下拉刷新</string>
-    <string name="listview_header_hint_ready">松开刷新数据</string>
+    <string name="listview_header_hint_ready">松开刷新</string>
     <string name="listview_header_hint_loading">正在加载...</string>
     <string name="listview_footer_hint_normal">查看更多</string>
     <string name="listview_footer_hint_ready">松开载入更多</string>
     <string name="listview_header_hint_end">已加载完数据</string>
+    <string name="Individual_center">个人中心</string>
 
 </resources>

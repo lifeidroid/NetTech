@@ -3,8 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-<TextView android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="213313132"/>
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:background="@color/Gray">
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/Bule"
+        android:layout_centerInParent="true"
+        android:text="@string/Individual_center"/>
+</RelativeLayout>
 </LinearLayout>
