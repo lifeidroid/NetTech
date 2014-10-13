@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +62,7 @@ public class Frg_Course extends Fragment {
 	private ListView lv_school;
 	private RadioGroup rg_selectCouse;
 	private ListView lv_dept;
+	private ProgressBar pb_slidingmenuBar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -110,6 +112,7 @@ public class Frg_Course extends Fragment {
 		iv_arrow.setImageResource(R.drawable.img_arrow_down);
 		tv_schoolName.setText(default_schoolName);
 		lv_school.setVisibility(View.GONE);
+		
 
 		fTransaction = fManager.beginTransaction();
 		frg_Course_New = new Frg_Course_New();
@@ -134,6 +137,7 @@ public class Frg_Course extends Fragment {
 		slidingMenu.setMenu(R.layout.slidingmenu);
 		slidingMenu.setFadeDegree(0.35f);
 		lv_dept = (ListView) getActivity().findViewById(R.id.lv_slidmenu_dept);
+		pb_slidingmenuBar = (ProgressBar)getActivity().findViewById(R.id.pb_slidingmenu);
 		lv_dept.setAdapter(adp_Dept);
 
 	}
@@ -260,6 +264,7 @@ public class Frg_Course extends Fragment {
 				if (default_schoolID == menu_cacheSchoolID) {
 					return;
 				}
+				pb_slidingmenuBar.setVisibility(View.VISIBLE);
 				menu_cacheSchoolID = default_schoolID;
 				new Net_GetDept(email, token, default_schoolID,
 						new Net_GetDept.SuccessCallback() {
@@ -270,6 +275,7 @@ public class Frg_Course extends Fragment {
 								deptList.addAll(list);
 								adp_Dept.clear();
 								adp_Dept.addAll(deptList, default_deptID);
+								pb_slidingmenuBar.setVisibility(View.INVISIBLE);
 
 							}
 						}, new Net_GetDept.FailCallback() {
@@ -279,7 +285,7 @@ public class Frg_Course extends Fragment {
 								Toast.makeText(getActivity(),
 										R.string.fail_to_getdept_list,
 										Toast.LENGTH_SHORT);
-
+								pb_slidingmenuBar.setVisibility(View.INVISIBLE);
 							}
 						});
 

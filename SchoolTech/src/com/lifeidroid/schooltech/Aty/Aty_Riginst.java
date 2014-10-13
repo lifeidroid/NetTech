@@ -43,8 +43,7 @@ public class Aty_Riginst extends Activity {
 	}
 
 	private void initListener() {
-		final ProgressDialog pg = new ProgressDialog(Aty_Riginst.this).show(
-				Aty_Riginst.this, null, "正在注册..");
+
 		btn_reginst.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -75,6 +74,8 @@ public class Aty_Riginst extends Activity {
 							Toast.LENGTH_SHORT);
 					return;
 				}
+				final ProgressDialog pg = new ProgressDialog(Aty_Riginst.this).show(
+						Aty_Riginst.this, null, "正在注册..");
 				new Net_Reginst(et_email.getText().toString(), et_passoword
 						.getText().toString(),
 						new Net_Reginst.SuccessCallback() {

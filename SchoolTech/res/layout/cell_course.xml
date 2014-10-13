@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/White"
     android:orientation="horizontal" >
 
     <LinearLayout
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="130dp"
         android:orientation="vertical" >
 
         <ImageView
@@ -19,7 +20,8 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1" >
 
         <TextView
@@ -27,36 +29,65 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/light_Blank" />
 
-        <TextView
-            android:id="@+id/tv_cellcourse_techname"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-			android:layout_below="@id/tv_cellcourse_name"
-            android:textColor="@color/light_Blank" />
+            android:layout_below="@id/tv_cellcourse_name"
+            android:gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/img_teacher" />
+
+            <TextView
+                android:id="@+id/tv_cellcourse_techname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:textColor="@color/light_Blank" />
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_alignParentBottom="true" >
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp" >
 
             <RatingBar
                 android:id="@+id/rb_cellcourse_grade"
                 style="@style/roomRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true" />
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true" />
 
-            <TextView
-                android:id="@+id/tv_cellcourse_studnum"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:textColor="@color/light_Blank" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_cellcourse_studnum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:textColor="@color/light_Blank" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/img_student" />
+            </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
 

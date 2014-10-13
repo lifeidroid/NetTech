@@ -29,7 +29,6 @@ public class NetGetImage {
 		Bitmap headMap;
 		File localfile = new File(cachePath, MD5Tool.md5(imagePath) + ".jpg");
 		if (localfile.exists()) {
-			System.out.println("getFileSave---------->localfile");
 			return Uri.fromFile(localfile);
 		} else {
 			try {

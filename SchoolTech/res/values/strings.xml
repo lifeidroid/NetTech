@@ -9,7 +9,7 @@
     <string name="please_input_password">请输入密码</string>
     <string name="reginst">注册</string>
     <string name="cacel">取消</string>
-    <string name="welcome_join_school_course">欢迎注册校课网！</string>
+    <string name="welcome_join_school_course">新生报到！</string>
     <string name="password_is_num_between_six_sixteen">密码为6~16位数字或字母</string>
     <string name="reinput_password">请再次输入密码</string>
     <string name="email_can_not_empoty">邮箱不能为空！</string>

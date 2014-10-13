@@ -63,9 +63,9 @@ public class Adp_Course extends BaseAdapter {
 		viewHolder = (ViewHolder)layout.getTag();
 		System.out.println("----->po"+position);
 		viewHolder.getTv_courseName().setText(list.get(position).getCourseName());
-		viewHolder.getTv_techName().setText("教师："+list.get(position).getTechName());
+		viewHolder.getTv_techName().setText(list.get(position).getTechName());
 		viewHolder.getRb_grade().setRating(list.get(position).getGarde());
-		viewHolder.getTv_studentNum().setText(list.get(position).getStudentNum()+"学员");
+		viewHolder.getTv_studentNum().setText(list.get(position).getStudentNum());
 		if (list.get(position).getCourseLogo() != null) {
 			AsyncImageLoad(viewHolder.getIv_courseLogo(), list.get(position).getCourseLogo());
 		}else {
