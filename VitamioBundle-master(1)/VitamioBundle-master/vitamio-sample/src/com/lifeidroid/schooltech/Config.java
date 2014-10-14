@@ -50,6 +50,10 @@ public class Config {
 	public static final int REFRESH = 0;
 	public static final int LOADMORE = 1;
 	public static final int ALLDEPT = 0;
+	public static final String ACTION_GETCOURSEINFO = "getcourinfo";
+	public static final String KEY_COURSEINFO = "courseinfo";
+	public static final String KEY_TECHINFO = "techinfo";
+	public static final String KEY_TECHHEAD = "techhead";
 
 	/**
 	 * 存取Email

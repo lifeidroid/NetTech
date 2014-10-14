@@ -6,9 +6,10 @@
 
     <ProgressBar
         style="@style/myProgressBarStyleSimple"
+        android:layout_marginTop="200dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:indeterminateDuration="700" />
 
     <com.lifeidroid.schooltech.Tools.ListViewFrame
@@ -17,7 +18,7 @@
         android:layout_height="fill_parent"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:divider="@color/dark_Gray"
+        android:divider="@color/Gray"
         android:dividerHeight="4dp"
         android:fadingEdge="none"
         android:layoutAnimation="@anim/anim_listview"

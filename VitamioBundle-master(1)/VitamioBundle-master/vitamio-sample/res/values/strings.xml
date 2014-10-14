@@ -40,5 +40,11 @@
     <string name="listview_footer_hint_ready">松开载入更多</string>
     <string name="listview_header_hint_end">已加载完数据</string>
     <string name="Individual_center">个人中心</string>
+    <string name="info">详细</string>
+    <string name="discuss">讨论</string>
+    <string name="note">笔记</string>
+    <string name="list">章节</string>
+    <string name="course_instruction">课程介绍</string>
+    <string name="techer_instruction">名师简介</string>
 
 </resources>

@@ -3,6 +3,7 @@ package com.lifeidroid.schooltech.Aty;
 import java.io.File;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,8 +25,7 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 	private TextView tv_course_name;
 	private TextView tv_my_name;
 	private String cachePath;
-	private String path;
-	private File dirFile;
+	private App_Main mApplication;
 	private android.support.v4.app.FragmentManager fManager;
 	private android.support.v4.app.FragmentTransaction fTransaction;
 	private Bundle bundle;
@@ -47,6 +47,7 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 	}
 
 	private void initValues() {
+		mApplication = (App_Main)getApplication();
 		intent = getIntent();
 		Switch_Main = true;
 		token = intent.getExtras().getString(Config.KEY_TOKEN);
@@ -55,12 +56,7 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 		head = intent.getExtras().getString(Config.KEY_HEAD);
 		nikename = intent.getExtras().getString(Config.KEY_NIKENAME);
 		fManager = getSupportFragmentManager();
-		path = getSDPath() + "/iyunmiCache/";
-		dirFile = new File(path);
-		if (!dirFile.exists()) {
-			dirFile.mkdirs();
-		}
-		cachePath = dirFile.toString();
+		cachePath = mApplication.getCachePath();
 	}
 
 	private void initView() {
@@ -136,13 +132,5 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 		});
 	}
 
-	private String getSDPath() {
-		File sdDir = null;
-		boolean sdCardExist = Environment.getExternalStorageState().equals(
-				android.os.Environment.MEDIA_MOUNTED); // 判断sd卡是否存在
-		if (sdCardExist) {
-			sdDir = Environment.getExternalStorageDirectory();// 获取跟目录
-		}
-		return sdDir.toString();
-	}
+
 }

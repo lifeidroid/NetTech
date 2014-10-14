@@ -29,6 +29,7 @@ public class NetGetImage {
 		Bitmap headMap;
 		File localfile = new File(cachePath, MD5Tool.md5(imagePath) + ".jpg");
 		if (localfile.exists()) {
+			System.out.println("---------->本地图片");
 			return Uri.fromFile(localfile);
 		} else {
 			try {
@@ -66,8 +67,7 @@ public class NetGetImage {
 			throws IOException {
 		File myCaptureFile = new File(cachePath, MD5Tool.md5(imagePath)
 				+ ".jpg");
-		BufferedOutputStream bos = new BufferedOutputStream(
-				new FileOutputStream(myCaptureFile));
+		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
 		bm.compress(Bitmap.CompressFormat.JPEG, 80, bos);
 		bos.flush();
 		bos.close();
