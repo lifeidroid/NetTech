@@ -19,9 +19,7 @@ public class Net_GetCourseInfo {
 							if (successCallback != null) {
 								successCallback.onSuccess(jobg.getString(Config.KEY_COURSEINFO)
 										, jobg.getString(Config.KEY_TECHINFO)
-										, jobg.getString(Config.KEY_TECHHEAD)
-										,Float.parseFloat(jobg.getString(Config.KEY_GRADE)) 
-										, jobg.getString(Config.KEY_STUDENTNUM));
+										, jobg.getString(Config.KEY_TECHHEAD));
 							}
 							break;
 						case Config.ERROR0:
@@ -73,7 +71,7 @@ public class Net_GetCourseInfo {
 		,Config.KEY_COURSEID,courseId+"");
 	}
 	public static interface SuccessCallback{
-		void onSuccess(String courseInfo,String techInfo,String techHead,float grade,String studentNum);
+		void onSuccess(String courseInfo,String techInfo,String techHead);
 	}
 	public static interface FailCallback{
 		void onFail(int error);

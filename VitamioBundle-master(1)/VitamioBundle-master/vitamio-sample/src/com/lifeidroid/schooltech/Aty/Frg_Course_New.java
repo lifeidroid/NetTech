@@ -36,6 +36,8 @@ public class Frg_Course_New extends Fragment implements
 	private String courseLogo;
 	private String courseName;
 	private String techName;
+	private String studentNum;
+	private float garde;
 	private Intent intent;
 
 	@Override
@@ -88,6 +90,8 @@ public class Frg_Course_New extends Fragment implements
 				courseLogo = mdl_Course.getCourseLogo();
 				courseName = mdl_Course.getCourseName();
 				techName = mdl_Course.getTechName();
+				studentNum = mdl_Course.getStudentNum();
+				garde = mdl_Course.getGarde();
 				intent = new Intent(getActivity(), Aty_Course_Main.class);
 				intent.putExtra(Config.KEY_EMAILMD5, email);
 				intent.putExtra(Config.KEY_TOKEN, token);
@@ -98,6 +102,8 @@ public class Frg_Course_New extends Fragment implements
 				intent.putExtra(Config.KEY_CACHEPATH, cachePath);
 				intent.putExtra(Config.KEY_COURSENAME, courseName);
 				intent.putExtra(Config.KEY_TECHNAME, techName);
+				intent.putExtra(Config.KEY_GRADE, garde);
+				intent.putExtra(Config.KEY_STUDENTNUM, studentNum);
 				startActivity(intent);
 
 			}

@@ -6,8 +6,9 @@
     android:orientation="horizontal" >
 
     <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="120dp"
         android:orientation="vertical" >
 
         <ImageView
@@ -15,7 +16,7 @@
             android:id="@+id/iv_cell_courselogo"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/White" />
+            android:background="@drawable/img_course_logo" />
     </LinearLayout>
 
     <RelativeLayout

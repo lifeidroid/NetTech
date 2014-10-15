@@ -47,6 +47,8 @@
         </activity>
         <activity android:name=".Aty.VideoViewDemo" >
         </activity>
+        <activity android:name=".Aty.Aty_Search" >
+        </activity>
     </application>
 
 </manifest>

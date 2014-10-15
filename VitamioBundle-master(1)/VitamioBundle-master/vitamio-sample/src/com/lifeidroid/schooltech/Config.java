@@ -54,6 +54,14 @@ public class Config {
 	public static final String KEY_COURSEINFO = "courseinfo";
 	public static final String KEY_TECHINFO = "techinfo";
 	public static final String KEY_TECHHEAD = "techhead";
+	public static final String ACTION_GETCOURSEDISCUSS = "getcourdiscuss";
+	public static final String KEY_DISCUSSRAPLYNUM = "replynum";
+	public static final String KEY_DISCUSSTIME = "discusstime";
+	public static final String KEY_DISCUSSCONTENT = "content";
+	public static final String KEY_STUDENTHEAD = "studhead";
+	public static final String KEY_STUDNETNIKE = "studnike";
+	public static final String KEY_STUDENTEMAIL = "studemail";
+	public static final String KEY_DISUCUSSID = "discussId";
 
 	/**
 	 * 存取Email
@@ -90,40 +98,45 @@ public class Config {
 		return context.getSharedPreferences(APPID, Context.MODE_PRIVATE)
 				.getString(KEY_PASSWORD, null);
 	}
+
 	/**
 	 * 存取default_school_name
 	 * 
 	 * @param context
 	 * @param password
 	 */
-	public static void cacheDefaultSchoolName(Context context, String default_school_name) {
+	public static void cacheDefaultSchoolName(Context context,
+			String default_school_name) {
 		Editor editor = context.getSharedPreferences(APPID,
 				Context.MODE_PRIVATE).edit();
 		editor.putString(KEY_DEFAULT_SCHOOLNAME, default_school_name);
 		editor.commit();
 	}
-	
+
 	public static String getCacheDefaultSchoolName(Context context) {
 		return context.getSharedPreferences(APPID, Context.MODE_PRIVATE)
 				.getString(KEY_DEFAULT_SCHOOLNAME, "石家庄学院");
 	}
+
 	/**
 	 * 存取default_school_Id
 	 * 
 	 * @param context
 	 * @param password
 	 */
-	public static void cacheDefaultSchoolId(Context context, int default_school_id) {
+	public static void cacheDefaultSchoolId(Context context,
+			int default_school_id) {
 		Editor editor = context.getSharedPreferences(APPID,
 				Context.MODE_PRIVATE).edit();
 		editor.putInt(KEY_DEFAULT_SCHOOLID, default_school_id);
 		editor.commit();
 	}
-	
+
 	public static int getCacheDefaultSchoolId(Context context) {
 		return context.getSharedPreferences(APPID, Context.MODE_PRIVATE)
-				.getInt(KEY_DEFAULT_SCHOOLID,1);
+				.getInt(KEY_DEFAULT_SCHOOLID, 1);
 	}
+
 	/**
 	 * 存取default_dept_Id
 	 * 
@@ -136,10 +149,10 @@ public class Config {
 		editor.putInt(KEY_DEFAULT_DEPTID, default_dept_id);
 		editor.commit();
 	}
-	
+
 	public static int getCacheDefaultDeptId(Context context) {
 		return context.getSharedPreferences(APPID, Context.MODE_PRIVATE)
-				.getInt(KEY_DEFAULT_DEPTID,0);
+				.getInt(KEY_DEFAULT_DEPTID, 0);
 	}
 
 }

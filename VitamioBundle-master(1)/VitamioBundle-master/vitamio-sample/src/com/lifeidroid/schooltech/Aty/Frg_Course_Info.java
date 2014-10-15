@@ -16,6 +16,7 @@ import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
 import com.lifeidroid.schooltech.Net.NetGetImage;
 import com.lifeidroid.schooltech.Net.Net_GetCourseInfo;
+import com.lifeidroid.schooltech.Tools.CircleImageView;
 
 public class Frg_Course_Info extends Fragment {
 	private View view;
@@ -24,21 +25,19 @@ public class Frg_Course_Info extends Fragment {
 	private TextView tv_techName;
 	private TextView tv_studentNum;
 	private TextView tv_techInfo;
-	private ImageView iv_techHead;
+	private CircleImageView iv_techHead;
 	private TextView tv_courseInfo;
 	private String email;
 	private String token;
 	private int schoolId;
 	private int deptId;
 	private int courseId;
+	private String cachePath;
+	private Bundle bundle;
 	private String courseName;
-	private String techHead;
 	private String techName;
 	private String studentNum;
-	private String grade;
-	private String techinfo;
-	private Bundle bundle;
-	private String cachePath;
+	private float grade;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +62,8 @@ public class Frg_Course_Info extends Fragment {
 		courseId = bundle.getInt(Config.KEY_COURSEID);
 		techName = bundle.getString(Config.KEY_TECHNAME);
 		courseName = bundle.getString(Config.KEY_COURSENAME);
+		grade = bundle.getFloat(Config.KEY_GRADE);
+		studentNum = bundle.getString(Config.KEY_STUDENTNUM);
 		cachePath = bundle.getString(Config.KEY_CACHEPATH);
 	}
 
@@ -74,21 +75,23 @@ public class Frg_Course_Info extends Fragment {
 		tv_studentNum = (TextView) view
 				.findViewById(R.id.tv_courseinfo_studentnum);
 		tv_techInfo = (TextView) view.findViewById(R.id.tv_courseinfo_techinfo);
-		iv_techHead = (ImageView) view
+		iv_techHead = (CircleImageView) view
 				.findViewById(R.id.iv_courseinfo_techhead);
 		tv_courseInfo = (TextView) view
 				.findViewById(R.id.tv_courseinfo_courseinfo);
 
 		tv_courseName.setText(courseName);
 		tv_techName.setText(techName);
+		rb_grade.setRating(grade);
+		tv_studentNum.setText(studentNum);
+		System.out.println("-------grade"+grade);
+		System.out.println("-------studentNum"+studentNum);
 		new Net_GetCourseInfo(email, token, schoolId, deptId, courseId,
 				new Net_GetCourseInfo.SuccessCallback() {
 
 					@Override
 					public void onSuccess(String courseInfo, String techInfo,
-							String techHead, float grade, String studentNum) {
-						rb_grade.setRating(grade);
-						tv_studentNum.setText(studentNum);
+							String techHead) {
 						tv_techInfo.setText(techInfo);
 						tv_courseInfo.setText(courseInfo);
 						AsyncImageLoad(iv_techHead, techHead);
