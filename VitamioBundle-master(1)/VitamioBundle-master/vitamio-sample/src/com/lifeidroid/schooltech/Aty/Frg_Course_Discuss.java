@@ -2,11 +2,13 @@ package com.lifeidroid.schooltech.Aty;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.lifeidroid.schooltech.Config;
@@ -27,6 +29,13 @@ public class Frg_Course_Discuss extends Fragment implements
 	private String cachePath;
 	private Bundle bundle;
 	private Adp_CourseDiscuss aDiscuss;
+	private Mdl_CourseDiscuss mdl_CourseDiscuss;
+	private Intent intent;
+	private int discussId;
+	private String studentNike;
+	private String studentHead;
+	private String replyTime;
+	private String content;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,7 @@ public class Frg_Course_Discuss extends Fragment implements
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.frg_course_discuss, null);
 		initViews();
+		initListener();
 		return view;
 	}
 
@@ -61,6 +71,35 @@ public class Frg_Course_Discuss extends Fragment implements
 		lv_content.setPullRefreshEnable(true);
 		lv_content.setXListViewListener(this);
 		loaddata(Config.REFRESH);
+	}
+	
+	private void initListener(){
+		lv_content.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				mdl_CourseDiscuss = (Mdl_CourseDiscuss) aDiscuss.getItem(arg2-1);
+				studentNike = mdl_CourseDiscuss.getStudentNike();
+				studentHead = mdl_CourseDiscuss.getStudentHead();
+				replyTime = mdl_CourseDiscuss.getDiscussTime();
+				content = mdl_CourseDiscuss.getContent();
+				intent = new Intent(getActivity(),Aty_CourseDiscuss_Reply.class);
+				intent.putExtra(Config.KEY_EMAILMD5, email);
+				intent.putExtra(Config.KEY_TOKEN, token);
+				intent.putExtra(Config.KEY_DEFAULT_SCHOOLID, schoolId);
+				intent.putExtra(Config.KEY_DEFAULT_DEPTID, deptId);
+				intent.putExtra(Config.KEY_COURSEID, courseId);
+				intent.putExtra(Config.KEY_DISUCUSSID, discussId);
+				intent.putExtra(Config.KEY_CACHEPATH, cachePath);
+				intent.putExtra(Config.KEY_STUDNETNIKE, studentNike);
+				intent.putExtra(Config.KEY_STUDENTHEAD, studentHead);
+				intent.putExtra(Config.KEY_DISCUSSTIME, replyTime);
+				intent.putExtra(Config.KEY_DISCUSSCONTENT, content);
+				startActivityForResult(intent, 0);
+				
+			}
+		});
 	}
 
 	private void loaddata(final int aciton) {
@@ -102,5 +141,12 @@ public class Frg_Course_Discuss extends Fragment implements
 	public void onLoadMore() {
 		loaddata(Config.LOADMORE);
 
+	}
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode == Config.RESOULT_NEED_REFRESH){
+			loaddata(Config.REFRESH);
+		};
 	}
 }

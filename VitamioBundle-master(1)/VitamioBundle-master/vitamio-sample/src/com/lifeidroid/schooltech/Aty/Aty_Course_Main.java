@@ -57,12 +57,12 @@ public class Aty_Course_Main extends FragmentActivity {
 		mIntent = getIntent();
 		email = mIntent.getExtras().getString(Config.KEY_EMAILMD5);
 		token = mIntent.getExtras().getString(Config.KEY_TOKEN);
-		courseName = mIntent.getExtras().getString(Config.KEY_COURSENAME);
-		courseLogo = mIntent.getExtras().getString(Config.KEY_COURSELOGO);
-		techName = mIntent.getExtras().getString(Config.KEY_TECHNAME);
 		schoolId = mIntent.getExtras().getInt(Config.KEY_DEFAULT_SCHOOLID);
 		deptId = mIntent.getExtras().getInt(Config.KEY_DEFAULT_DEPTID);
 		courseId = mIntent.getExtras().getInt(Config.KEY_COURSEID);
+		courseName = mIntent.getExtras().getString(Config.KEY_COURSENAME);
+		courseLogo = mIntent.getExtras().getString(Config.KEY_COURSELOGO);
+		techName = mIntent.getExtras().getString(Config.KEY_TECHNAME);
 		cachePath = mIntent.getExtras().getString(Config.KEY_CACHEPATH);
 		grade = mIntent.getExtras().getFloat(Config.KEY_GRADE);
 		studentNum = mIntent.getExtras().getString(Config.KEY_STUDENTNUM);

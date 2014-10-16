@@ -71,6 +71,9 @@ public class Config {
 	public static final String KEY_CHAPTERNAME = "chaptername";
 	public static final String KEY_CHAPTERTIME = "chaptertime";
 	public static final String ACTION_GETCOURSECHAPTER = "getcourchapter";
+	public static final String ACTION_SENDCOMMENT = "sendcomment";
+	public static final String MSG = "msg";
+	public static final int RESOULT_NEED_REFRESH = 1;
 
 	/**
 	 * 存取Email

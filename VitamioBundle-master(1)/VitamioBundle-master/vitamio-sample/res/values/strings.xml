@@ -46,5 +46,10 @@
     <string name="list">章节</string>
     <string name="course_instruction">课程介绍</string>
     <string name="techer_instruction">名师简介</string>
+    <string name="send">发送</string>
+    <string name="write_discuss_content">写评论...</string>
+    <string name="reply_can_not_empty">评论内容不能为空！</string>
+    <string name="reply_success">评论成功！</string>
+    <string name="reply_send_fail">评论发送失败！</string>
 
 </resources>

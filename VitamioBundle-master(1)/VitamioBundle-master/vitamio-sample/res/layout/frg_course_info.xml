@@ -77,7 +77,7 @@
                         <ImageView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:src="@drawable/img_teacher" >
+                            android:src="@drawable/img_student" >
                         </ImageView>
 
                         <TextView

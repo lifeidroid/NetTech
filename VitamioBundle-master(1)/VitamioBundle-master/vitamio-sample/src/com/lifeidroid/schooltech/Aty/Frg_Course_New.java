@@ -95,7 +95,7 @@ public class Frg_Course_New extends Fragment implements
 				intent = new Intent(getActivity(), Aty_Course_Main.class);
 				intent.putExtra(Config.KEY_EMAILMD5, email);
 				intent.putExtra(Config.KEY_TOKEN, token);
-				intent.putExtra(Config.KEY_DEFAULT_SCHOOLID, default_deptId);
+				intent.putExtra(Config.KEY_DEFAULT_SCHOOLID, default_schoolId);
 				intent.putExtra(Config.KEY_DEFAULT_DEPTID, default_deptId);
 				intent.putExtra(Config.KEY_COURSEID, courseID);
 				intent.putExtra(Config.KEY_COURSELOGO, courseLogo);
