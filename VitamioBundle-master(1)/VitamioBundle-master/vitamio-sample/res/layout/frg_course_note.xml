@@ -3,9 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-        <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="笔记"/>
-    
+
+    <com.lifeidroid.schooltech.Tools.ListViewFrame
+        android:id="@+id/lv_coursenote"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:divider="@color/Gray"
+        android:dividerHeight="4dp"
+        android:fadingEdge="none"
+        android:layoutAnimation="@anim/anim_listview"
+        android:persistentDrawingCache="none"
+        android:scrollbars="none"
+        android:scrollingCache="false"
+        android:smoothScrollbar="true" />
 
 </LinearLayout>

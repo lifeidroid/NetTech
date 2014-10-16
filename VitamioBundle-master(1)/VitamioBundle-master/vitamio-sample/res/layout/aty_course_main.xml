@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/light_Blank" />
+            android:textColor="@color/Blank" />
 
         <ImageView
             android:id="@+id/iv_coursemain_hart"
@@ -71,8 +71,7 @@
             android:button="@null"
             android:checked="true"
             android:gravity="center"
-            android:text="@string/info"
-            android:textColor="@color/light_Blank" />
+            android:text="@string/info" />
 
         <RadioButton
             android:id="@+id/rb_coursediscuss"
@@ -82,8 +81,7 @@
             android:background="@drawable/rb_middle"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/discuss"
-            android:textColor="@color/light_Blank" />
+            android:text="@string/discuss" />
 
         <RadioButton
             android:id="@+id/rb_coursenote"
@@ -93,8 +91,7 @@
             android:background="@drawable/rb_middle"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/note"
-            android:textColor="@color/light_Blank" />
+            android:text="@string/note" />
 
         <RadioButton
             android:id="@+id/rb_courselist"
@@ -104,8 +101,7 @@
             android:background="@drawable/rb_right"
             android:button="@null"
             android:gravity="center"
-            android:text="@string/list"
-            android:textColor="@color/light_Blank" />
+            android:text="@string/list" />
     </RadioGroup>
 
     <LinearLayout

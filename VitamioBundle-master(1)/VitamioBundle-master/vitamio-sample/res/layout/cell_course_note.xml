@@ -8,7 +8,7 @@
     android:orientation="horizontal" >
 
     <com.lifeidroid.schooltech.Tools.CircleImageView
-        android:id="@+id/iv_cell_coursediscuss_head"
+        android:id="@+id/iv_cell_coursenote_head"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="5dp"
@@ -18,11 +18,11 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_margin="5dp"
+        android:layout_margin="3dp"
         android:layout_weight="1" >
 
         <TextView
-            android:id="@+id/tv_cell_coursediscuss_nike"
+            android:id="@+id/tv_cell_coursenote_nike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -30,7 +30,7 @@
             android:textColor="@color/Blank" />
 
         <TextView
-            android:id="@+id/tv_cell_coursediscuss_date"
+            android:id="@+id/tv_cell_coursenote_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -38,29 +38,29 @@
             android:textColor="@color/light_Blank" />
 
         <TextView
-            android:id="@+id/tv_cell_coursediscuss_content"
+            android:id="@+id/tv_cell_coursenote_content"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_cell_coursediscuss_nike"
+            android:layout_below="@id/tv_cell_coursenote_nike"
             android:layout_marginTop="3dp"
             android:paddingRight="5dp"
             android:textColor="@color/light_Blank" />
 
         <ImageView
-            android:id="@+id/iv_cell_coursediscuss_img"
+            android:id="@+id/iv_cell_coursenotecellct_img"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/img_discuss" />
+            android:src="@drawable/img_hart_on" />
 
         <TextView
-            android:id="@+id/tv_cell_coursediscuss_num"
+            android:id="@+id/tv_cell_courscenotellect_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="3dp"
-            android:layout_toLeftOf="@id/iv_cell_coursediscuss_img"
+            android:layout_toLeftOf="@id/iv_cell_coursenotecellct_img"
             android:textColor="@color/light_Blank" />
     </RelativeLayout>
 

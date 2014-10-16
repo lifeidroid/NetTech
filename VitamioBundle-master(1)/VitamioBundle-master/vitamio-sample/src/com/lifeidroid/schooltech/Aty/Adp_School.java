@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.lifeidroid.schooltech.R;
 import com.lifeidroid.schooltech.Mdl.Mdl_School;
 import com.lifeidroid.schooltech.Net.NetGetImage;
+import com.lifeidroid.schooltech.Tools.CircleImageView;
 
 
 public class Adp_School extends BaseAdapter {
@@ -59,7 +60,7 @@ public class Adp_School extends BaseAdapter {
 		if (layout == null) {
 			layout = LayoutInflater.from(getContext()).inflate(
 					R.layout.cell_school, null);
-			viewHolder = new ViewHolder((ImageView)layout.findViewById(R.id.iv_cellschool_logo),
+			viewHolder = new ViewHolder((CircleImageView)layout.findViewById(R.id.iv_cellschool_logo),
 					(TextView)layout.findViewById(R.id.tv_cellschool_name),
 					(TextView)layout.findViewById(R.id.tv_cellschool_coursenum)
 					, (ImageView)layout.findViewById(R.id.iv_cellschool_selected));
@@ -81,7 +82,7 @@ public class Adp_School extends BaseAdapter {
 		return layout;
 	}
 	
-	private void AsyncImageLoad(ImageView ivHead, String path) {
+	private void AsyncImageLoad(CircleImageView ivHead, String path) {
 		AsyncImageTask asyncImageTask = new AsyncImageTask(ivHead);
 		asyncImageTask.execute(path);
 	}
@@ -100,18 +101,18 @@ public class Adp_School extends BaseAdapter {
 			if (result != null && imageView != null) {
 				imageView.setImageURI(result);
 			}
-		}
+	}
 		
 	}
 	
 
 	private class ViewHolder {
-		private ImageView iv_schoolLogo;
+		private CircleImageView iv_schoolLogo;
 		private TextView tv_schoolName;
 		private TextView tv_courseNum;
 		private ImageView iv_selected;
 
-		public ViewHolder(ImageView iv_schoolLogo, TextView tv_schoolName,
+		public ViewHolder(CircleImageView iv_schoolLogo, TextView tv_schoolName,
 				TextView tv_courseNum, ImageView iv_selected) {
 			super();
 			this.iv_schoolLogo = iv_schoolLogo;
@@ -120,7 +121,7 @@ public class Adp_School extends BaseAdapter {
 			this.iv_selected = iv_selected;
 		}
 
-		public ImageView getIv_schoolLogo() {
+		public CircleImageView getIv_schoolLogo() {
 			return iv_schoolLogo;
 		}
 

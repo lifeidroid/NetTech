@@ -62,6 +62,15 @@ public class Config {
 	public static final String KEY_STUDNETNIKE = "studnike";
 	public static final String KEY_STUDENTEMAIL = "studemail";
 	public static final String KEY_DISUCUSSID = "discussId";
+	public static final String KEY_NOTEID = "noteId";
+	public static final String KEY_NOTECONTENT = "content";
+	public static final String KEY_NOTETIME = "notetime";
+	public static final String KEY_COLLECTNUM = "collectnum";
+	public static final String ACTION_GETCOURSENOTE = "getcournote";
+	public static final String KEY_CHAPTERID = "chapterId";
+	public static final String KEY_CHAPTERNAME = "chaptername";
+	public static final String KEY_CHAPTERTIME = "chaptertime";
+	public static final String ACTION_GETCOURSECHAPTER = "getcourchapter";
 
 	/**
 	 * 存取Email

@@ -8,6 +8,6 @@
 
     <stroke
         android:width="0.3dip"
-        android:color="@color/Bule" />
+        android:color="@color/light_Blank" />
 
 </shape>

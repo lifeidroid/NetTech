@@ -79,7 +79,7 @@
                     android:checked="true"
                     android:gravity="center"
                     android:text="@string/newcourse"
-                    android:textColor="@color/light_Blank" />
+                    android:textColor="@color/Blank" />
 
                 <RadioButton
                     android:id="@+id/rb_coursehot"
@@ -90,7 +90,7 @@
                     android:button="@null"
                     android:gravity="center"
                     android:text="@string/hotcourse"
-                    android:textColor="@color/light_Blank" />
+                    android:textColor="@color/Blank" />
 
                 <RadioButton
                     android:id="@+id/rb_courserecommend"
@@ -101,7 +101,7 @@
                     android:button="@null"
                     android:gravity="center"
                     android:text="@string/recommendcourse"
-                    android:textColor="@color/light_Blank" />
+                    android:textColor="@color/Blank" />
             </RadioGroup>
 
             <LinearLayout

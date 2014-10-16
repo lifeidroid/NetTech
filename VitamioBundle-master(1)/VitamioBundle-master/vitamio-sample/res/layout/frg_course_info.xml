@@ -63,7 +63,8 @@
                             android:id="@+id/tv_courseinfo_techname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="3dp" />
+                            android:layout_marginLeft="3dp"
+                            android:textColor="@color/light_Blank" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -83,7 +84,8 @@
                             android:id="@+id/tv_courseinfo_studentnum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="3dp" />
+                            android:layout_marginLeft="3dp"
+                            android:textColor="@color/light_Blank" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -127,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:layout_weight="1"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:textColor="@color/light_Blank" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -155,7 +157,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/light_Blank" />
             </LinearLayout>
         </LinearLayout>

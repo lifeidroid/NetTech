@@ -16,7 +16,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/light_Blank" />
+            android:textColor="@color/Blank" />
 
         <TextView
             android:id="@+id/tv_celldept_coursenum"
