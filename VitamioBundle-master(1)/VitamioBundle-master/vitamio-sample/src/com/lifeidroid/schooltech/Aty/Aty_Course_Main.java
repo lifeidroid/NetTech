@@ -42,7 +42,7 @@ public class Aty_Course_Main extends FragmentActivity {
 	private Frg_Course_Info frg_Course_Info;
 	private Frg_Course_Discuss frg_Course_Discuss;
 	private Frg_Course_Note frg_Course_Note;
-	private Frg_Course_List frg_Course_List;
+	private Frg_Course_Chapter frg_Course_List;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -153,7 +153,7 @@ public class Aty_Course_Main extends FragmentActivity {
 							fTransaction.replace(R.id.lay_coursemain_container, frg_Course_Note);
 							break;
 						case R.id.rb_courselist:
-							frg_Course_List = new Frg_Course_List();
+							frg_Course_List = new Frg_Course_Chapter();
 							mBundle.putString(Config.KEY_EMAILMD5, email);
 							mBundle.putString(Config.KEY_TOKEN, token);
 							mBundle.putInt(Config.KEY_SCHOOLID, schoolId);

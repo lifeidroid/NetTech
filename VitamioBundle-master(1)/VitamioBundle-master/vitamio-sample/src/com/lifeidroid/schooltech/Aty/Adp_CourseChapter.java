@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class Adp_CourseList extends BaseAdapter {
+public class Adp_CourseChapter extends BaseAdapter {
 	private List<Mdl_CourseList> list = new ArrayList<Mdl_CourseList>();
 	private Context context;
 
-	public Adp_CourseList(Context context) {
+	public Adp_CourseChapter(Context context) {
 		this.context = context;
 	}
 

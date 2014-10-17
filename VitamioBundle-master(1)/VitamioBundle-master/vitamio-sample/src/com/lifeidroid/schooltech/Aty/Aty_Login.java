@@ -99,6 +99,7 @@ public class Aty_Login extends Activity {
 						intent.putExtra(Config.KEY_MOTTO, motto);
 						intent.putExtra(Config.KEY_EMAILMD5, et_email.getText().toString());
 						startActivity(intent);
+						finish();
 
 					}
 				}, new Net_Login.FailCallback() {

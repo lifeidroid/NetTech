@@ -31,7 +31,7 @@ public class Net_GetCourseList {
 									JSONArray jsonArray = jobg
 											.getJSONArray(Config.KEY_ITEMS);
 									JSONObject jsonObject;
-									for (int i = 0; i < jsonArray.length()-1; i++) {
+									for (int i = 0; i < jsonArray.length() - 1; i++) {
 										jsonObject = jsonArray.getJSONObject(i);
 										list.add(new Mdl_CourseList(
 												jsonObject
@@ -39,7 +39,9 @@ public class Net_GetCourseList {
 												jsonObject
 														.getString(Config.KEY_CHAPTERNAME),
 												jsonObject
-														.getString(Config.KEY_CHAPTERTIME)));
+														.getString(Config.KEY_CHAPTERTIME),
+												jsonObject
+														.getString(Config.KEY_CHAPTER_URL)));
 									}
 									if (successCallback != null) {
 										successCallback.onSuccess(list);

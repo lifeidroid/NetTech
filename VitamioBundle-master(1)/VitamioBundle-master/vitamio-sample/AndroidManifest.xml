@@ -17,10 +17,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name="com.lifeidroid.schooltech.Aty.App_Main"
         android:allowBackup="false"
         android:icon="@drawable/img_app_logo"
         android:label="@string/app_name"
-        android:name="com.lifeidroid.schooltech.Aty.App_Main"
         android:theme="@android:style/Theme.Light.NoTitleBar" >
 
         <!-- Don't forgot InitActivity -->
@@ -31,7 +31,7 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".Aty.Aty_Login"
+            android:name=".Aty.Aty_Welcome"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,17 +39,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Aty.Aty_Login" >
+        </activity>
         <activity android:name=".Aty.Aty_Riginst" >
         </activity>
         <activity android:name=".Aty.Aty_Main" >
         </activity>
         <activity android:name=".Aty.Aty_Course_Main" >
         </activity>
-        <activity android:name=".Aty.VideoViewDemo" >
+        <activity
+            android:name=".Aty.VideoViewDemo"
+            android:screenOrientation="landscape" >
         </activity>
         <activity android:name=".Aty.Aty_Search" >
         </activity>
         <activity android:name=".Aty.Aty_CourseDiscuss_Reply" >
+        </activity>
+        <activity android:name=".Aty.Aty_My_Discuss" >
+        </activity>
+        <activity android:name=".Aty.Aty_My_Note" >
+        </activity>
+        <activity android:name=".Aty.Aty_My_plane" >
+        </activity>
+        <activity android:name=".Aty.Aty_My_Collect" >
+        </activity>
+        <activity android:name=".Aty.Aty_My_Setting" >
         </activity>
     </application>
 

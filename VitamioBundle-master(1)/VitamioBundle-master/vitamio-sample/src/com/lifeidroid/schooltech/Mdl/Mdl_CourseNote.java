@@ -8,8 +8,9 @@ public class Mdl_CourseNote {
 	private String content;
 	private String noteTime;
 	private int collectNum;
+	private int whetherCollected;
 	public Mdl_CourseNote(int noteId, String studentEmail, String studentNike,
-			String studentHead, String content, String noteTime, int collectNum) {
+			String studentHead, String content, String noteTime, int collectNum,int whetherCollected) {
 		super();
 		this.noteId = noteId;
 		this.studentEmail = studentEmail;
@@ -18,6 +19,7 @@ public class Mdl_CourseNote {
 		this.content = content;
 		this.noteTime = noteTime;
 		this.collectNum = collectNum;
+		this.whetherCollected = whetherCollected;
 	}
 	public int getNoteId() {
 		return noteId;
@@ -60,6 +62,12 @@ public class Mdl_CourseNote {
 	}
 	public void setCollectNum(int collectNum) {
 		this.collectNum = collectNum;
+	}
+	public int getWhetherCollected() {
+		return whetherCollected;
+	}
+	public void setWhetherCollected(int whetherCollected) {
+		this.whetherCollected = whetherCollected;
 	}
 	
 }

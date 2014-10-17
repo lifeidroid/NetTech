@@ -2,15 +2,249 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical" >
-<RelativeLayout android:layout_width="fill_parent"
-    android:layout_height="50dp"
-    android:background="@color/Gray">
-    <TextView android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/Gray" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/Individual_center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/Bule" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/img_line_left" />
+
+        <com.lifeidroid.schooltech.Tools.CircleImageView
+            android:id="@+id/iv_fry_my_ursrhead"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_app_logo" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/img_line_right" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_frg_my_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/Bule"
-        android:layout_centerInParent="true"
-        android:text="@string/Individual_center"/>
-</RelativeLayout>
+        android:textColor="@color/Blank" />
+
+    <TextView
+        android:id="@+id/tv_frg_my_motto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/img_motto"
+        android:paddingLeft="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/light_Blank" />
+
+    <RelativeLayout
+        android:id="@+id/lay_frg_my_discuss"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/cell_shape" >
+
+        <ImageView
+            android:id="@+id/iv_my_discuss_logo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/img_my_discuss" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/iv_my_discuss_logo"
+            android:text="@string/my_discuss"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_arror_right" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lay_frg_my_note"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/cell_shape" >
+
+        <ImageView
+            android:id="@+id/iv_my_note_logo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/img_my_note" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/iv_my_note_logo"
+            android:text="@string/my_note"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_arror_right" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lay_frg_my_collect"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/cell_shape" >
+
+        <ImageView
+            android:id="@+id/iv_my_collect_logo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/img_my_collect" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/iv_my_collect_logo"
+            android:text="@string/my_collect"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_arror_right" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lay_frg_my_plan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/cell_shape" >
+
+        <ImageView
+            android:id="@+id/iv_my_plan_logo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/img_my_plane" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/iv_my_plan_logo"
+            android:text="@string/study_plan"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_arror_right" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lay_frg_my_set"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/cell_shape" >
+
+        <ImageView
+            android:id="@+id/iv_my_set_logo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/img_my_set" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/iv_my_set_logo"
+            android:text="@string/setting_center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_arror_right" />
+    </RelativeLayout>
+
 </LinearLayout>

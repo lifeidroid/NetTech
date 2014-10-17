@@ -9,81 +9,47 @@
         android:id="@+id/iv_cell_courselogo"
         android:layout_width="170dp"
         android:layout_height="120dp"
-        android:layout_margin="1dp"
-        android:background="@drawable/img_course_logo" />
+        android:layout_margin="1dp" />
 
     <RelativeLayout
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1" >
+        android:layout_margin="10dp"
+         >
 
         <TextView
             android:id="@+id/tv_cellcourse_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:lines="2"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/Blank" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_cellcourse_techname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_cellcourse_name"
-            android:layout_marginTop="5dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:textColor="@color/light_Blank" />
 
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:src="@drawable/img_teacher" />
+        <RatingBar
+            android:id="@+id/rb_cellcourse_grade"
+            style="@style/roomRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"/>
 
-            <TextView
-                android:id="@+id/tv_cellcourse_techname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:textColor="@color/light_Blank" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
+        <TextView
+            android:id="@+id/tv_cellcourse_studnum"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp" >
-
-            <RatingBar
-                android:id="@+id/rb_cellcourse_grade"
-                style="@style/roomRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/tv_cellcourse_studnum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
-                    android:textColor="@color/light_Blank" />
-
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:src="@drawable/img_student" />
-            </LinearLayout>
-        </RelativeLayout>
+            android:layout_alignParentRight="true"
+            android:textColor="@color/light_Blank" />
     </RelativeLayout>
+
+
 
 </LinearLayout>

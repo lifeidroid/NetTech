@@ -41,7 +41,8 @@ public class Net_GetCourseNote {
 												jObject.getString(Config.KEY_STUDENTHEAD),
 												jObject.getString(Config.KEY_NOTECONTENT),
 												jObject.getString(Config.KEY_NOTETIME),
-												jObject.getInt(Config.KEY_COLLECTNUM)));
+												jObject.getInt(Config.KEY_COLLECTNUM),
+												jObject.getInt(Config.KEY_WHETHERCOLLECTED)));
 									}
 									if (successCallback != null) {
 										successCallback.onSuccess(list);

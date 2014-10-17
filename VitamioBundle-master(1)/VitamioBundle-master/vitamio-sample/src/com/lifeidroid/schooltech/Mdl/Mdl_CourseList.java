@@ -4,12 +4,14 @@ public class Mdl_CourseList {
 	private int chapterId;
 	private String chapterName;
 	private String chaptertime;
+	private String chapterUrl;
 
-	public Mdl_CourseList(int chapterId, String chapterName, String chaptertime) {
+	public Mdl_CourseList(int chapterId, String chapterName, String chaptertime,String chapterUrl) {
 		super();
 		this.chapterId = chapterId;
 		this.chapterName = chapterName;
 		this.chaptertime = chaptertime;
+		this.chapterUrl = chapterUrl;
 	}
 
 	public int getChapterId() {
@@ -34,6 +36,12 @@ public class Mdl_CourseList {
 
 	public void setChaptertime(String chaptertime) {
 		this.chaptertime = chaptertime;
+	}
+	public String getChapterUrl() {
+		return chapterUrl;
+	}
+	public void setChapterUrl(String chapterUrl) {
+		this.chapterUrl = chapterUrl;
 	}
 
 }

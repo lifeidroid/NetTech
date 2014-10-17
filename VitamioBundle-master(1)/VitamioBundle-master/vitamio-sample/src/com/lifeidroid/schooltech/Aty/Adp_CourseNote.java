@@ -12,16 +12,26 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
+import com.lifeidroid.schooltech.R.color;
 import com.lifeidroid.schooltech.Mdl.Mdl_CourseNote;
 import com.lifeidroid.schooltech.Net.NetGetImage;
+import com.lifeidroid.schooltech.Net.Net_SetCollection;
 import com.lifeidroid.schooltech.Tools.CircleImageView;
 
 public class Adp_CourseNote extends BaseAdapter {
 	private String cachePath;
 	private Context context;
 	private String email;
+	private String token;
+	private int schoolId;
+	private int deptId;
+	private int courseId;
+	private int action;
+	private ViewHolder viewHolder;
 	private List<Mdl_CourseNote> list = new ArrayList<Mdl_CourseNote>();
 
 	public Adp_CourseNote( Context context,String cachePath) {
@@ -53,8 +63,7 @@ public class Adp_CourseNote extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int positon, View layout, ViewGroup arg2) {
-		ViewHolder viewHolder;
+	public View getView(final int positon, View layout, ViewGroup arg2) {
 		if (layout == null) {
 			layout = LayoutInflater.from(getContext()).inflate(R.layout.cell_course_note, null);
 			viewHolder = new ViewHolder((CircleImageView) layout.findViewById(R.id.iv_cell_coursenote_head)
@@ -71,6 +80,11 @@ public class Adp_CourseNote extends BaseAdapter {
 		viewHolder.getTv_cellectNum().setText(list.get(positon).getCollectNum()+"");
 		viewHolder.getTv_nike().setText(list.get(positon).getStudentNike());
 		if(email.equals(list.get(positon).getStudentEmail())){
+			viewHolder.getTv_content().setTextColor(getContext().getResources().getColor(R.color.Bule));
+		}else {
+			viewHolder.getTv_content().setTextColor(getContext().getResources().getColor(R.color.light_Blank));
+		}
+		if(Config.COLLECTED == list.get(positon).getWhetherCollected()){
 			viewHolder.getIv_cellect().setImageResource(R.drawable.img_hart_on);
 		}else {
 			viewHolder.getIv_cellect().setImageResource(R.drawable.img_hart_off);
@@ -78,6 +92,39 @@ public class Adp_CourseNote extends BaseAdapter {
 		if (!list.get(positon).getStudentHead().isEmpty()) {
 			AsyncImageLoad(viewHolder.getIv_head(), list.get(positon).getStudentHead());
 		}
+		viewHolder.getIv_cellect().setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				if (Config.COLLECTED == list.get(positon).getWhetherCollected()) {
+					action = Config.CANCELCOLLECTED;
+				}else {
+					action = Config.COLLECTED;
+				}
+				new Net_SetCollection(email, token, schoolId, deptId, courseId, list.get(positon).getNoteId(), action, new Net_SetCollection.SuccessCallback() {
+					
+					@Override
+					public void onSucess() {
+						if (action == Config.COLLECTED) {
+							Toast.makeText(getContext(), "收藏成功！", Toast.LENGTH_SHORT).show();							
+						}else {
+							Toast.makeText(getContext(), "取消成功！", Toast.LENGTH_SHORT).show();
+						}
+						list.get(positon).setWhetherCollected(action);
+						notifyDataSetChanged();
+						
+					}
+				}, new Net_SetCollection.FailCallback() {
+					
+					@Override
+					public void onFail(int error) {
+						Toast.makeText(getContext(), "笔记收藏失败！", Toast.LENGTH_SHORT).show();
+						
+					}
+				});
+				
+			}
+		});
 		return layout;
 	}
 
@@ -152,9 +199,13 @@ public class Adp_CourseNote extends BaseAdapter {
 		}
 	}
 
-	public void addAll(List<Mdl_CourseNote> list,String email) {
+	public void addAll(List<Mdl_CourseNote> list,String email,String token,int schoolId,int deptId,int courseId) {
 		this.list.addAll(list);
 		this.email = email;
+		this.token = token;
+		this.schoolId = schoolId;
+		this.deptId = deptId;
+		this.courseId = courseId;
 		notifyDataSetChanged();
 	}
 

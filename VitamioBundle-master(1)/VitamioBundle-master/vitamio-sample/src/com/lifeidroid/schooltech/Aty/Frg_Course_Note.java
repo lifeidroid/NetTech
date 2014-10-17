@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.lifeidroid.schooltech.Config;
@@ -29,6 +30,8 @@ public class Frg_Course_Note extends Fragment implements
 	private String cachePath;
 	private Bundle bundle;
 	private Adp_CourseNote aNote;
+	private Mdl_CourseNote mdl_CourseNote;
+	private int whetherCollected;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,17 @@ public class Frg_Course_Note extends Fragment implements
 		lv_content.setXListViewListener(this);
 		loaddata(Config.REFRESH);
 	}
+	private void initListener(){
+		lv_content.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				mdl_CourseNote = (Mdl_CourseNote) aNote.getItem(arg2-1);
+				whetherCollected = mdl_CourseNote.getWhetherCollected();
+			}
+		});
+	}
 
 	private void loaddata(final int aciton) {
 		new Net_GetCourseNote(email, token, schoolId, deptId, courseId, 1, 20,
@@ -75,7 +89,7 @@ public class Frg_Course_Note extends Fragment implements
 
 							aNote.clear();
 						}
-						aNote.addAll(list, Config.getCacheEmail(getActivity()));
+						aNote.addAll(list, email,token,schoolId,deptId,courseId);
 						lv_content.stopLoadMore();
 						lv_content.stopRefresh();
 

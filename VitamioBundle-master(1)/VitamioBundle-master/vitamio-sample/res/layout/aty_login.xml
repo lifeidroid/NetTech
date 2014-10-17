@@ -20,17 +20,17 @@
             android:textColor="@color/Bule" />
     </LinearLayout>
 
-    <ImageView
+    <com.lifeidroid.schooltech.Tools.CircleImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/logo_shape"
-        android:src="@drawable/img_logo" />
+        android:src="@drawable/img_app_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="校课欢迎您！"
+        android:text="校课网欢迎您！"
+        android:layout_marginTop="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/Bule" />
 

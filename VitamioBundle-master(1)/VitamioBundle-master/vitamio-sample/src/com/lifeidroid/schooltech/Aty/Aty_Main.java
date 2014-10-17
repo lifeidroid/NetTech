@@ -1,14 +1,11 @@
 package com.lifeidroid.schooltech.Aty;
 
-import java.io.File;
-
-import android.app.Activity;
-import android.app.Application;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,18 +21,23 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 	private ImageView iv_my_logo;
 	private TextView tv_course_name;
 	private TextView tv_my_name;
-	private String cachePath;
 	private App_Main mApplication;
 	private android.support.v4.app.FragmentManager fManager;
 	private android.support.v4.app.FragmentTransaction fTransaction;
 	private Bundle bundle;
+	private String cachePath;
 	private String token;
 	private String email;
-	private String mottp;
+	private String motto;
 	private String head;
 	private String nikename;
 	private Intent intent;
 	private boolean Switch_Main;// 是否打开课程界面
+	private Frg_My frg_My;
+	private Frg_Course frg_Course;
+	private AlertDialog aDialog;
+	private TextView tv_exist;
+	private TextView tv_cancel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +49,12 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 	}
 
 	private void initValues() {
-		mApplication = (App_Main)getApplication();
+		mApplication = (App_Main) getApplication();
 		intent = getIntent();
 		Switch_Main = true;
 		token = intent.getExtras().getString(Config.KEY_TOKEN);
 		email = intent.getExtras().getString(Config.KEY_EMAILMD5);
-		mottp = intent.getExtras().getString(Config.KEY_MOTTO);
+		motto = intent.getExtras().getString(Config.KEY_MOTTO);
 		head = intent.getExtras().getString(Config.KEY_HEAD);
 		nikename = intent.getExtras().getString(Config.KEY_NIKENAME);
 		fManager = getSupportFragmentManager();
@@ -72,7 +74,7 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 		tv_my_name.setTextColor(getResources().getColor(R.color.light_Blank));
 
 		fTransaction = fManager.beginTransaction();
-		Frg_Course frg_Course = new Frg_Course();
+		frg_Course = new Frg_Course();
 		bundle = new Bundle();
 		bundle.putString(Config.KEY_CACHEPATH, cachePath);
 		bundle.putString(Config.KEY_EMAILMD5, email);
@@ -80,6 +82,39 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 		frg_Course.setArguments(bundle);
 		fTransaction.replace(R.id.lay_main, frg_Course);
 		fTransaction.commit();
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_BACK:
+			final View DialogView = LayoutInflater.from(Aty_Main.this).inflate(
+					R.layout.dlg_exist, null);
+			final Dialog dialog = new Dialog(Aty_Main.this, R.style.dialog);
+			dialog.setContentView(DialogView);
+
+			tv_exist = (TextView) DialogView.findViewById(R.id.tv_dlg_exit);
+			tv_cancel = (TextView) DialogView.findViewById(R.id.tv_dlg_cancel);
+			tv_exist.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					finish();
+
+				}
+			});
+			tv_cancel.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					dialog.dismiss();
+
+				}
+			});
+			dialog.show();
+			break;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	private void initListener() {
@@ -98,7 +133,7 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 				}
 				Switch_Main = true;
 				fTransaction = fManager.beginTransaction();
-				Frg_Course frg_Course = new Frg_Course();
+				frg_Course = new Frg_Course();
 				bundle = new Bundle();
 				bundle.putString(Config.KEY_CACHEPATH, cachePath);
 				bundle.putString(Config.KEY_EMAILMD5, email);
@@ -106,7 +141,6 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 				frg_Course.setArguments(bundle);
 				fTransaction.replace(R.id.lay_main, frg_Course);
 				fTransaction.commit();
-				
 
 			}
 		});
@@ -124,13 +158,21 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 				iv_my_logo.setImageResource(R.drawable.img_my_on);
 				tv_my_name.setTextColor(getResources().getColor(R.color.Bule));
 				fTransaction = fManager.beginTransaction();
-				Frg_My frg_My = new Frg_My();
+				frg_My = new Frg_My();
+				bundle = new Bundle();
+				bundle.putString(Config.KEY_CACHEPATH, cachePath);
+				bundle.putString(Config.KEY_EMAILMD5, email);
+				bundle.putString(Config.KEY_TOKEN, token);
+				bundle.putString(Config.KEY_NIKENAME, nikename);
+				bundle.putString(Config.KEY_MOTTO, motto);
+				bundle.putString(Config.KEY_HEAD, head);
+				bundle.putString(Config.KEY_CACHEPATH, cachePath);
+				frg_My.setArguments(bundle);
 				fTransaction.replace(R.id.lay_main, frg_My);
 				fTransaction.commit();
 
 			}
 		});
 	}
-
 
 }

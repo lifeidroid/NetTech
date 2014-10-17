@@ -2,6 +2,8 @@ package com.lifeidroid.schooltech.Aty;
 
 import java.util.List;
 
+import android.R.interpolator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,6 +31,14 @@ public class Frg_Course_Hot extends Fragment implements
 	private Adp_Course adp_Course;
 	private ListViewFrame lv_newcourse;
 	private int action;
+	private Mdl_Course mdl_Course;
+	private int courseID;
+	private String courseLogo;
+	private String courseName;
+	private String techName;
+	private String studentNum;
+	private float garde;
+	private Intent intent;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +72,7 @@ public class Frg_Course_Hot extends Fragment implements
 	private void initViews() {
 		lv_newcourse = (ListViewFrame) view.findViewById(R.id.lv_course);
 		lv_newcourse.setPullLoadEnable(true);
+		lv_newcourse.setPullRefreshEnable(true);
 		lv_newcourse.setXListViewListener(this);
 		lv_newcourse.setAdapter(adp_Course);
 		loadMessage(Config.REFRESH);
@@ -72,9 +83,28 @@ public class Frg_Course_Hot extends Fragment implements
 		lv_newcourse.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// lv_newcourse.onRefreshComplete();
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+				mdl_Course = (Mdl_Course) adp_Course.getItem(position-1);
+				courseID = mdl_Course.getCourseId();
+				courseLogo = mdl_Course.getCourseLogo();
+				courseName = mdl_Course.getCourseName();
+				techName = mdl_Course.getTechName();
+				studentNum = mdl_Course.getStudentNum();
+				garde = mdl_Course.getGarde();
+				intent = new Intent(getActivity(), Aty_Course_Main.class);
+				intent.putExtra(Config.KEY_EMAILMD5, email);
+				intent.putExtra(Config.KEY_TOKEN, token);
+				intent.putExtra(Config.KEY_DEFAULT_SCHOOLID, default_schoolId);
+				intent.putExtra(Config.KEY_DEFAULT_DEPTID, default_deptId);
+				intent.putExtra(Config.KEY_COURSEID, courseID);
+				intent.putExtra(Config.KEY_COURSELOGO, courseLogo);
+				intent.putExtra(Config.KEY_CACHEPATH, cachePath);
+				intent.putExtra(Config.KEY_COURSENAME, courseName);
+				intent.putExtra(Config.KEY_TECHNAME, techName);
+				intent.putExtra(Config.KEY_GRADE, garde);
+				intent.putExtra(Config.KEY_STUDENTNUM, studentNum);
+				startActivity(intent);
 
 			}
 		});

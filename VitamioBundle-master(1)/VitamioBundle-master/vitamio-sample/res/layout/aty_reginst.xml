@@ -43,12 +43,11 @@
             android:textColor="@color/Bule" />
     </RelativeLayout>
 
-    <ImageView
+    <com.lifeidroid.schooltech.Tools.CircleImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/logo_shape"
-        android:src="@drawable/img_logo" />
+        android:src="@drawable/img_app_logo" />
 
     <TextView
         android:layout_width="wrap_content"
