@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="5dip" >
+
+    <Button
+        android:id="@+id/btn_dlg_course_menu_send_discuss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/discuss_selector"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:text="@string/send_discuss"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/Bule" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="#DAD9DB" />
+
+    <Button
+        android:id="@+id/btn_dlg_course_menu_send_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/note_selector"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:text="@string/send_note"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/Bule" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="#DAD9DB" />
+
+    <Button
+        android:id="@+id/btn_dlg_course_menu_collect_course"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/note_selector"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:text="@string/collect_course"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/Bule" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="#DAD9DB" />
+
+    <Button
+        android:id="@+id/btn_dlg_course_menu_share_course"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/collect_selector"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:text="@string/share_course"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/Bule" />
+
+    <Button
+        android:id="@+id/btn_dlg_course_menu_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:background="@drawable/cancel_selector"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:text="@string/cancel"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/Bule" />
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.lifeidroid.schooltech.Aty;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -7,10 +8,18 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.lifeidroid.schooltech.Config;
@@ -32,7 +41,7 @@ public class Aty_Course_Main extends FragmentActivity {
 	private String studentNum;
 	private float grade;
 
-	private ImageView iv_coursemain_hart;
+	private ImageView iv_coursemain_menu;
 	private LinearLayout lay_back;
 	private TextView tv_course_title;
 	private RadioGroup rg_select;
@@ -43,6 +52,13 @@ public class Aty_Course_Main extends FragmentActivity {
 	private Frg_Course_Discuss frg_Course_Discuss;
 	private Frg_Course_Note frg_Course_Note;
 	private Frg_Course_Chapter frg_Course_List;
+	private View view;
+	private Button btn_send_discuss;
+	private Button btn_send_note;
+	private Button btn_collect_course;
+	private Button btn_share_course;
+	private Button btn_cancel;
+	private Dialog dlg_menu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +86,13 @@ public class Aty_Course_Main extends FragmentActivity {
 	}
 
 	private void initViews() {
-		iv_coursemain_hart = (ImageView) findViewById(R.id.iv_coursemain_hart);
+		iv_coursemain_menu = (ImageView) findViewById(R.id.iv_coursemain_menu);
 		lay_back = (LinearLayout) findViewById(R.id.lay_coursemain_cancel);
 		tv_course_title = (TextView) findViewById(R.id.tv_coursemain_title);
 		rg_select = (RadioGroup) findViewById(R.id.rg_coursemain_select);
 		iv_course_logo = (ImageView) findViewById(R.id.iv_coursemain_logo);
+		
+
 		System.out.println("---->courseName" + courseName);
 		tv_course_title.setText(courseName);
 		System.out.println("------->courselogoselect" + courseLogo);
@@ -108,8 +126,15 @@ public class Aty_Course_Main extends FragmentActivity {
 
 			}
 		});
-		rg_select
-				.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+		iv_coursemain_menu.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				showDialog();
+				
+			}
+		});
+		rg_select.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
 					@Override
 					public void onCheckedChanged(RadioGroup arg0, int arg1) {
@@ -170,8 +195,128 @@ public class Aty_Course_Main extends FragmentActivity {
 						fTransaction.commit();
 					}
 				});
-	}
 
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_MENU:
+			showDialog();
+			break;
+
+		default:
+			break;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	private void showDialog() {
+		view = getLayoutInflater().inflate(R.layout.dlg_course_menu,null);
+		dlg_menu = new Dialog(this, R.style.transparentFrameWindowStyle);
+		dlg_menu.setContentView(view, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+		Window window = dlg_menu.getWindow();// 设置显示动画
+		window.setWindowAnimations(R.style.main_menu_animstyle);
+		WindowManager.LayoutParams wl = window.getAttributes();
+		wl.x = 0;
+		wl.y = getWindowManager().getDefaultDisplay().getHeight();// 以下这两句是为了保证按钮可以水平满屏
+		wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
+		wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+		// 设置显示位置
+		dlg_menu.onWindowAttributesChanged(wl);
+		// 设置点击外围解散
+		dlg_menu.setCanceledOnTouchOutside(true);
+		btn_send_discuss = (Button)view.findViewById(R.id.btn_dlg_course_menu_send_discuss);
+		btn_send_note = (Button)view.findViewById(R.id.btn_dlg_course_menu_send_note);
+		btn_collect_course = (Button)view.findViewById(R.id.btn_dlg_course_menu_collect_course);
+		btn_share_course = (Button)view.findViewById(R.id.btn_dlg_course_menu_share_course);
+		btn_cancel = (Button)view.findViewById(R.id.btn_dlg_course_menu_cancel);
+		initDialogListener();
+		dlg_menu.show();
+	}
+	private void initDialogListener(){
+		btn_send_discuss.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				dlg_menu.dismiss();
+				View view_send_discuss = getLayoutInflater().inflate(R.layout.dlg_send_course_discuss,null);
+				final Dialog dlg_sendDiscuss = new Dialog(Aty_Course_Main.this, R.style.transparentFrameWindowStyle);
+				dlg_sendDiscuss.setContentView(view_send_discuss, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+				dlg_sendDiscuss.setCanceledOnTouchOutside(true);
+				TextView tv_send = (TextView)view_send_discuss.findViewById(R.id.tv_dlg_send_course_discuss_send);
+				TextView tv_cancel = (TextView)view_send_discuss.findViewById(R.id.tv_dlg_send_course_discuss_cancel);
+				RatingBar rb_grade = (RatingBar)view_send_discuss.findViewById(R.id.rb_dlg_send_course_discuss_grade);
+				EditText et_content = (EditText)view_send_discuss.findViewById(R.id.et_dlg_send_course_discuss_content);
+				tv_cancel.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						dlg_sendDiscuss.dismiss();
+						
+					}
+				});
+				dlg_sendDiscuss.show();
+				
+			}
+		});
+		btn_send_note.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				dlg_menu.dismiss();
+				View view_send_note = getLayoutInflater().inflate(R.layout.dlg_send_course_note,null);
+				final Dialog dlg_sendnote = new Dialog(Aty_Course_Main.this, R.style.transparentFrameWindowStyle);
+				dlg_sendnote.setContentView(view_send_note, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+				dlg_sendnote.setCanceledOnTouchOutside(true);
+				TextView tv_send = (TextView)view_send_note.findViewById(R.id.tv_dlg_send_course_note_send);
+				TextView tv_cancel = (TextView)view_send_note.findViewById(R.id.tv_dlg_send_course_note_cancel);
+				EditText et_content = (EditText)view_send_note.findViewById(R.id.et_dlg_send_course_note_content);
+				tv_send.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				tv_cancel.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						dlg_sendnote.dismiss();
+						
+					}
+				});
+				dlg_sendnote.show();
+				
+			}
+		});
+		btn_collect_course.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		btn_share_course.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		btn_cancel.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				dlg_menu.dismiss();
+				
+			}
+		});	
+	}
 	private void AsyncImageLoad(ImageView ivHead, String path) {
 		AsyncImageTask asyncImageTask = new AsyncImageTask(ivHead);
 		asyncImageTask.execute(path);

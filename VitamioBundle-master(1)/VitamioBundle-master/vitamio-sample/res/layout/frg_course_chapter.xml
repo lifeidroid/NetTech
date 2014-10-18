@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.lifeidroid.schooltech.Tools.ListViewFrame
-        android:id="@+id/lv_frg_course_note_list"
+    <ListView
+        android:id="@+id/lv_frg_course_chapter_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="5dp"
@@ -12,27 +12,26 @@
         android:divider="@color/Gray"
         android:dividerHeight="4dp"
         android:fadingEdge="none"
-        android:layoutAnimation="@anim/anim_listview"
         android:persistentDrawingCache="none"
         android:scrollbars="none"
         android:scrollingCache="false"
         android:smoothScrollbar="true" />
 
     <LinearLayout
-        android:id="@+id/lay_frg_courset_note_content"
+        android:id="@+id/lay_frg_courset_chapter_content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
         android:orientation="vertical" >
 
         <ImageView
-            android:id="@+id/iv_frg_course_note_content"
+            android:id="@+id/iv_frg_course_chapter_content"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="30dp" />
 
         <TextView
-            android:id="@+id/tv_frg_course_note_content"
+            android:id="@+id/tv_frg_course_chapter_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -41,7 +40,7 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/pb_frg_course_note_content"
+        android:id="@+id/pb_frg_course_chapter_content"
         style="@style/myProgressBarStyleSimple"
         android:layout_width="30dp"
         android:layout_height="30dp"

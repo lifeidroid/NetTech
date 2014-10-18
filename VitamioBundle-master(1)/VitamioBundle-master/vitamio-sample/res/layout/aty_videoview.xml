@@ -9,20 +9,22 @@
     <io.vov.vitamio.widget.VideoView
         android:id="@+id/surface_view"
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
     <LinearLayout
         android:id="@+id/pgb1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="center"
         android:background="#00000000"
+        android:gravity="center"
         android:orientation="horizontal" >
 
         <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/myProgressBarStyleSimple"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:indeterminateDuration="700" />
 
         <TextView
             android:id="@+id/tv"

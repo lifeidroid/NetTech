@@ -8,6 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lifeidroid.schooltech.Config;
@@ -32,6 +36,10 @@ public class Frg_Course_Note extends Fragment implements
 	private Adp_CourseNote aNote;
 	private Mdl_CourseNote mdl_CourseNote;
 	private int whetherCollected;
+	private LinearLayout lay_content;
+	private ImageView iv_content;
+	private TextView tv_content;
+	private ProgressBar pb_contentBar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +68,13 @@ public class Frg_Course_Note extends Fragment implements
 
 	private void initViews() {
 		lv_content = (ListViewFrame) view
-				.findViewById(R.id.lv_coursenote);
+				.findViewById(R.id.lv_frg_course_note_list);
+		pb_contentBar = (ProgressBar)view.findViewById(R.id.pb_frg_course_note_content);
+		pb_contentBar.setVisibility(View.GONE);
+		lay_content = (LinearLayout)view.findViewById(R.id.lay_frg_courset_note_content);
+		lay_content.setVisibility(View.GONE);
+		iv_content = (ImageView)view.findViewById(R.id.iv_frg_course_note_content);
+		tv_content = (TextView)view.findViewById(R.id.tv_frg_course_note_content);
 		lv_content.setAdapter(aNote);
 		lv_content.setPullLoadEnable(true);
 		lv_content.setPullRefreshEnable(true);
@@ -80,11 +94,13 @@ public class Frg_Course_Note extends Fragment implements
 	}
 
 	private void loaddata(final int aciton) {
+		pb_contentBar.setVisibility(View.VISIBLE);
 		new Net_GetCourseNote(email, token, schoolId, deptId, courseId, 1, 20,
 				new Net_GetCourseNote.SuccessCallback() {
 
 					@Override
 					public void onSuccess(List<Mdl_CourseNote> list) {
+						pb_contentBar.setVisibility(View.GONE);
 						if (aciton == Config.REFRESH) {
 
 							aNote.clear();
@@ -92,17 +108,23 @@ public class Frg_Course_Note extends Fragment implements
 						aNote.addAll(list, email,token,schoolId,deptId,courseId);
 						lv_content.stopLoadMore();
 						lv_content.stopRefresh();
+						if (0 == aNote.getCount()) {
+							lv_content.setVisibility(View.VISIBLE);
+							tv_content.setText(R.string.note_list_is_empoty);
+							iv_content.setImageResource(R.drawable.img_note_bg);
+						}
 
 					}
 				}, new Net_GetCourseNote.FailCallback() {
 
 					@Override
 					public void onFail(int error) {
+						pb_contentBar.setVisibility(View.GONE);
 						lv_content.stopLoadMore();
 						lv_content.stopRefresh();
-						Toast.makeText(getActivity(), "获取笔记列表失败！",
-								Toast.LENGTH_SHORT).show();
-
+						lay_content.setVisibility(View.VISIBLE);
+						iv_content.setImageResource(R.drawable.img_fail_bg);
+						tv_content.setText(R.string.fail_load_note);
 					}
 				});
 	}

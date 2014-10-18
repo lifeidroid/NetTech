@@ -100,7 +100,7 @@ public class VideoViewDemo extends Activity {
 						break;
 					case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:
 						// 显示 下载速度
-						Logger.setText("download rate:" + arg2);
+						Logger.setText("下载速度:" + arg2+"kb/s");
 						break;
 					}
 					return true;

@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -16,50 +16,66 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-
+	<!-- 不可评分的分数条的样式 -->
     <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/room_rating_bar</item>
         <item name="android:minHeight">13dp</item>
         <item name="android:maxHeight">13dp</item>
         <item name="android:isIndicator">true</item>
     </style>
-
+	<!-- 评分条的样式 -->
+    <style name="enable_roomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/enable_room_rating_bar</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="android:maxHeight">32dp</item>
+    </style>
+	<!-- 带铅笔的进度条的样式 -->
     <style name="myProgressBarStyleLarge">
 
 
-　　                <item name="android:indeterminateDrawable">@drawable/progress_large</item>
+
+　　                        <item name="android:indeterminateDrawable">@drawable/progress_large</item>
 
 
-　　                <item name="android:minWidth">40dp</item>
+
+　　                        <item name="android:minWidth">40dp</item>
 
 
-　　                <item name="android:maxWidth">40dp</item>
+
+　　                        <item name="android:maxWidth">40dp</item>
 
 
-　　                <item name="android:minHeight">40dp</item>
+
+　　                        <item name="android:minHeight">40dp</item>
 
 
-　　                <item name="android:maxHeight">40dp</item>
+
+　　                        <item name="android:maxHeight">40dp</item>
     </style>
-
+	<!-- 简单的进度条的样式 -->
     <style name="myProgressBarStyleSimple">
 
 
-　　                <item name="android:indeterminateDrawable">@drawable/progress_simple</item>
+
+　　                        <item name="android:indeterminateDrawable">@drawable/progress_simple</item>
 
 
-　　                <item name="android:minWidth">40dp</item>
+
+　　                        <item name="android:minWidth">40dp</item>
 
 
-　　                <item name="android:maxWidth">40dp</item>
+
+　　                        <item name="android:maxWidth">40dp</item>
 
 
-　　                <item name="android:minHeight">40dp</item>
+
+　　                        <item name="android:minHeight">40dp</item>
 
 
-　　                <item name="android:maxHeight">40dp</item>
+
+　　                        <item name="android:maxHeight">40dp</item>
     </style>
-
+	<!-- 退出菜单对话框样式 -->
     <style name="dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -68,6 +84,15 @@
         <item name="android:background">#00ff0000</item>
         <item name="android:windowBackground">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
+    </style>
+	<!-- 课程菜单样式 -->
+    <style name="transparentFrameWindowStyle" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/photo_choose_bg</item>
+    </style>
+
+    <style name="main_menu_animstyle">
+        <item name="android:windowEnterAnimation">@anim/photo_dialog_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/photo_dialog_out_anim</item>
     </style>
 
 </resources>

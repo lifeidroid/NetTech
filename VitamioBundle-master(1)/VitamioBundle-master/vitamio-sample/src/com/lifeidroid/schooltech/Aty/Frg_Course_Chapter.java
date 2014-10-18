@@ -9,7 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lifeidroid.schooltech.Config;
@@ -31,6 +35,10 @@ public class Frg_Course_Chapter extends Fragment {
 	private Intent intent;
 	private String chapterUrl;
 	private Mdl_CourseList mdl_CourseList;
+	private LinearLayout lay_content;
+	private ProgressBar pb_content;
+	private ImageView iv_content;
+	private TextView tv_content;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +49,7 @@ public class Frg_Course_Chapter extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.frg_course_list, null);
+		view = inflater.inflate(R.layout.frg_course_chapter, null);
 		initViews();
 		initListener();
 		return view;
@@ -59,7 +67,11 @@ public class Frg_Course_Chapter extends Fragment {
 	}
 
 	private void initViews() {
-		lv_content = (ListView) view.findViewById(R.id.lv_courselist);
+		lv_content = (ListView) view.findViewById(R.id.lv_frg_course_chapter_list);
+		lay_content = (LinearLayout)view.findViewById(R.id.lay_frg_courset_chapter_content);
+		iv_content = (ImageView)view.findViewById(R.id.iv_frg_course_chapter_content);
+		tv_content = (TextView)view.findViewById(R.id.tv_frg_course_chapter_content);
+		pb_content = (ProgressBar)view.findViewById(R.id.pb_frg_course_chapter_content);
 		lv_content.setAdapter(aList);
 		loaddata();
 	}
@@ -82,12 +94,13 @@ public class Frg_Course_Chapter extends Fragment {
 	}
 
 	private void loaddata() {
+		pb_content.setVisibility(View.VISIBLE);
 		new Net_GetCourseList(email, token, schoolId, deptId, courseId,
 				new Net_GetCourseList.SuccessCallback() {
 
 					@Override
 					public void onSuccess(List<Mdl_CourseList> list) {
-
+						pb_content.setVisibility(View.GONE);
 						aList.clear();
 						aList.addAll(list);
 
@@ -96,10 +109,9 @@ public class Frg_Course_Chapter extends Fragment {
 
 					@Override
 					public void onFail(int error) {
-
-						Toast.makeText(getActivity(), "获取视频列表失败！",
-								Toast.LENGTH_SHORT).show();
-
+						pb_content.setVisibility(View.GONE);
+						iv_content.setImageResource(R.drawable.img_fail_bg);
+						tv_content.setText(R.string.fail_get_chapter_list);
 					}
 				});
 	}

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dlg_shape"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:text="答疑解惑"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/Bule" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请给课程评分："
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/light_Blank" />
+
+        <RatingBar
+            style="@style/enable_roomRatingBar"
+            android:id="@+id/rb_dlg_send_course_discuss_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/light_Blank" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        android:gravity="top"
+        android:id="@+id/et_dlg_send_course_discuss_content"
+        android:hint="请提出您学习过程中的疑问或见解..."
+        android:lines="4"
+        android:paddingLeft="5dp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:background="@color/light_Blank" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/tv_dlg_send_course_discuss_send"
+            android:text="提交"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <TextView
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:background="@color/light_Blank" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:id="@+id/tv_dlg_send_course_discuss_cancel"
+            android:gravity="center"
+            android:text="取消"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+    </LinearLayout>
+
+</LinearLayout>
