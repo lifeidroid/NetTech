@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -90,8 +91,10 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 		case KeyEvent.KEYCODE_BACK:
 			final View DialogView = LayoutInflater.from(Aty_Main.this).inflate(
 					R.layout.dlg_exist, null);
-			final Dialog dialog = new Dialog(Aty_Main.this, R.style.dialog);
-			dialog.setContentView(DialogView);
+			final Dialog dialog = new Dialog(Aty_Main.this, R.style.transparentFrameWindowStyle);
+			dialog.setContentView(DialogView,new LayoutParams(LayoutParams.FILL_PARENT,
+					LayoutParams.WRAP_CONTENT));
+			dialog.setCanceledOnTouchOutside(true);
 
 			tv_exist = (TextView) DialogView.findViewById(R.id.tv_dlg_exit);
 			tv_cancel = (TextView) DialogView.findViewById(R.id.tv_dlg_cancel);

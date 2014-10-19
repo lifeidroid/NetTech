@@ -8,7 +8,6 @@
     <string name="please_input_email_address">请输入邮箱地址</string>
     <string name="please_input_password">请输入密码</string>
     <string name="reginst">注册</string>
-    <string name="cacel">取消</string>
     <string name="welcome_join_school_course">新生报到！</string>
     <string name="password_is_num_between_six_sixteen">密码为6~16位数字或字母</string>
     <string name="reinput_password">请再次输入密码</string>
@@ -46,7 +45,7 @@
     <string name="list">章节</string>
     <string name="course_instruction">课程介绍</string>
     <string name="techer_instruction">名师简介</string>
-    <string name="send">发送</string>
+    <string name="send">提交</string>
     <string name="write_discuss_content">写评论...</string>
     <string name="reply_can_not_empty">评论内容不能为空！</string>
     <string name="reply_success">评论成功！</string>
@@ -61,10 +60,12 @@
     <string name="fail_load_note">获取笔记列表失败！</string>
     <string name="note_list_is_empoty">笔记列表为空！</string>
     <string name="fail_get_chapter_list">获取章节列表失败！</string>
-    <string name="send_discuss">发表评论</string>
+    <string name="send_discuss">答疑解惑</string>
     <string name="send_note">发表笔记</string>
     <string name="collect_course">收藏课程</string>
     <string name="share_course">分享课程</string>
     <string name="cancel">取消</string>
+    <string name="grade_for_course">请给课程评分：</string>
+    <string name="please_write_down_your_question_for_course">请提出您学习过程中的疑问或见解...</string>
 
 </resources>

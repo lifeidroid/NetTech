@@ -66,7 +66,7 @@ public class Net_Send_Discuss {
 		}, Config.KEY_ACTION, Config.ACTION_SENDCOMMENT,
 		Config.KEY_TOKEN, token, Config.KEY_EMAILMD5, email,
 		Config.KEY_SCHOOLID, schoolId + "", Config.KEY_DEPTID, deptId
-				+ "", Config.KEY_COURSEID, courseId + "",Config.KEY_DISUCUSSID,discussId+"",Config.MSG,content);
+				+ "", Config.KEY_COURSEID, courseId + "",Config.KEY_DISUCUSSID,discussId+"",Config.KEY_MSG,content);
 	}
 	public static interface SuccessCallback{
 		void onSucess();

@@ -17,7 +17,7 @@
 
     <RelativeLayout
         android:layout_width="0dp"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_weight="1" >
 
@@ -25,6 +25,7 @@
             android:id="@+id/tv_cell_coursediscuss_nike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:layout_alignParentLeft="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/Blank" />

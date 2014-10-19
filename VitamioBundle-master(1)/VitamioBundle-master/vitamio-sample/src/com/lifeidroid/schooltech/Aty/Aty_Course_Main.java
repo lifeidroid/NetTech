@@ -1,13 +1,22 @@
 package com.lifeidroid.schooltech.Aty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +30,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
 import com.lifeidroid.schooltech.Net.NetGetImage;
+import com.lifeidroid.schooltech.Net.Net_Collect_Course;
+import com.lifeidroid.schooltech.Net.Net_Send_Discuss_For_Course;
+import com.lifeidroid.schooltech.Net.Net_Send_Note_For_Course;
 
 public class Aty_Course_Main extends FragmentActivity {
 	private Bundle mBundle;
@@ -40,6 +53,7 @@ public class Aty_Course_Main extends FragmentActivity {
 	private int courseId;
 	private String studentNum;
 	private float grade;
+	private static Toast mToast;
 
 	private ImageView iv_coursemain_menu;
 	private LinearLayout lay_back;
@@ -91,7 +105,6 @@ public class Aty_Course_Main extends FragmentActivity {
 		tv_course_title = (TextView) findViewById(R.id.tv_coursemain_title);
 		rg_select = (RadioGroup) findViewById(R.id.rg_coursemain_select);
 		iv_course_logo = (ImageView) findViewById(R.id.iv_coursemain_logo);
-		
 
 		System.out.println("---->courseName" + courseName);
 		tv_course_title.setText(courseName);
@@ -127,14 +140,15 @@ public class Aty_Course_Main extends FragmentActivity {
 			}
 		});
 		iv_coursemain_menu.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				showDialog();
-				
+
 			}
 		});
-		rg_select.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+		rg_select
+				.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
 					@Override
 					public void onCheckedChanged(RadioGroup arg0, int arg1) {
@@ -153,7 +167,8 @@ public class Aty_Course_Main extends FragmentActivity {
 							mBundle.putString(Config.KEY_STUDENTNUM, studentNum);
 							mBundle.putFloat(Config.KEY_GRADE, grade);
 							frg_Course_Info.setArguments(mBundle);
-							fTransaction.replace(R.id.lay_coursemain_container, frg_Course_Info);
+							fTransaction.replace(R.id.lay_coursemain_container,
+									frg_Course_Info);
 							break;
 						case R.id.rb_coursediscuss:
 							frg_Course_Discuss = new Frg_Course_Discuss();
@@ -164,7 +179,8 @@ public class Aty_Course_Main extends FragmentActivity {
 							mBundle.putInt(Config.KEY_COURSEID, courseId);
 							mBundle.putString(Config.KEY_CACHEPATH, cachePath);
 							frg_Course_Discuss.setArguments(mBundle);
-							fTransaction.replace(R.id.lay_coursemain_container, frg_Course_Discuss);
+							fTransaction.replace(R.id.lay_coursemain_container,
+									frg_Course_Discuss);
 							break;
 						case R.id.rb_coursenote:
 							frg_Course_Note = new Frg_Course_Note();
@@ -175,7 +191,8 @@ public class Aty_Course_Main extends FragmentActivity {
 							mBundle.putInt(Config.KEY_COURSEID, courseId);
 							mBundle.putString(Config.KEY_CACHEPATH, cachePath);
 							frg_Course_Note.setArguments(mBundle);
-							fTransaction.replace(R.id.lay_coursemain_container, frg_Course_Note);
+							fTransaction.replace(R.id.lay_coursemain_container,
+									frg_Course_Note);
 							break;
 						case R.id.rb_courselist:
 							frg_Course_List = new Frg_Course_Chapter();
@@ -186,7 +203,8 @@ public class Aty_Course_Main extends FragmentActivity {
 							mBundle.putInt(Config.KEY_COURSEID, courseId);
 							mBundle.putString(Config.KEY_CACHEPATH, cachePath);
 							frg_Course_List.setArguments(mBundle);
-							fTransaction.replace(R.id.lay_coursemain_container, frg_Course_List);
+							fTransaction.replace(R.id.lay_coursemain_container,
+									frg_Course_List);
 							break;
 
 						default:
@@ -197,7 +215,7 @@ public class Aty_Course_Main extends FragmentActivity {
 				});
 
 	}
-	
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
@@ -210,11 +228,12 @@ public class Aty_Course_Main extends FragmentActivity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	
+
 	private void showDialog() {
-		view = getLayoutInflater().inflate(R.layout.dlg_course_menu,null);
+		view = getLayoutInflater().inflate(R.layout.dlg_course_menu, null);
 		dlg_menu = new Dialog(this, R.style.transparentFrameWindowStyle);
-		dlg_menu.setContentView(view, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+		dlg_menu.setContentView(view, new LayoutParams(
+				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 		Window window = dlg_menu.getWindow();// 设置显示动画
 		window.setWindowAnimations(R.style.main_menu_animstyle);
 		WindowManager.LayoutParams wl = window.getAttributes();
@@ -226,97 +245,255 @@ public class Aty_Course_Main extends FragmentActivity {
 		dlg_menu.onWindowAttributesChanged(wl);
 		// 设置点击外围解散
 		dlg_menu.setCanceledOnTouchOutside(true);
-		btn_send_discuss = (Button)view.findViewById(R.id.btn_dlg_course_menu_send_discuss);
-		btn_send_note = (Button)view.findViewById(R.id.btn_dlg_course_menu_send_note);
-		btn_collect_course = (Button)view.findViewById(R.id.btn_dlg_course_menu_collect_course);
-		btn_share_course = (Button)view.findViewById(R.id.btn_dlg_course_menu_share_course);
-		btn_cancel = (Button)view.findViewById(R.id.btn_dlg_course_menu_cancel);
+		btn_send_discuss = (Button) view
+				.findViewById(R.id.btn_dlg_course_menu_send_discuss);
+		btn_send_note = (Button) view
+				.findViewById(R.id.btn_dlg_course_menu_send_note);
+		btn_collect_course = (Button) view
+				.findViewById(R.id.btn_dlg_course_menu_collect_course);
+		btn_share_course = (Button) view
+				.findViewById(R.id.btn_dlg_course_menu_share_course);
+		btn_cancel = (Button) view
+				.findViewById(R.id.btn_dlg_course_menu_cancel);
 		initDialogListener();
 		dlg_menu.show();
 	}
-	private void initDialogListener(){
+
+	private void initDialogListener() {
 		btn_send_discuss.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				dlg_menu.dismiss();
-				View view_send_discuss = getLayoutInflater().inflate(R.layout.dlg_send_course_discuss,null);
-				final Dialog dlg_sendDiscuss = new Dialog(Aty_Course_Main.this, R.style.transparentFrameWindowStyle);
-				dlg_sendDiscuss.setContentView(view_send_discuss, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+				View view_send_discuss = getLayoutInflater().inflate(
+						R.layout.dlg_send_course_discuss, null);
+				final Dialog dlg_sendDiscuss = new Dialog(Aty_Course_Main.this,
+						R.style.transparentFrameWindowStyle);
+				dlg_sendDiscuss.setContentView(view_send_discuss,
+						new LayoutParams(LayoutParams.FILL_PARENT,
+								LayoutParams.WRAP_CONTENT));
 				dlg_sendDiscuss.setCanceledOnTouchOutside(true);
-				TextView tv_send = (TextView)view_send_discuss.findViewById(R.id.tv_dlg_send_course_discuss_send);
-				TextView tv_cancel = (TextView)view_send_discuss.findViewById(R.id.tv_dlg_send_course_discuss_cancel);
-				RatingBar rb_grade = (RatingBar)view_send_discuss.findViewById(R.id.rb_dlg_send_course_discuss_grade);
-				EditText et_content = (EditText)view_send_discuss.findViewById(R.id.et_dlg_send_course_discuss_content);
+				TextView tv_send = (TextView) view_send_discuss
+						.findViewById(R.id.tv_dlg_send_course_discuss_send);
+				TextView tv_cancel = (TextView) view_send_discuss
+						.findViewById(R.id.tv_dlg_send_course_discuss_cancel);
+				final RatingBar rb_grade = (RatingBar) view_send_discuss
+						.findViewById(R.id.rb_dlg_send_course_discuss_grade);
+				final EditText et_content = (EditText) view_send_discuss
+						.findViewById(R.id.et_dlg_send_course_discuss_content);
 				tv_cancel.setOnClickListener(new View.OnClickListener() {
-					
+
 					@Override
 					public void onClick(View arg0) {
 						dlg_sendDiscuss.dismiss();
-						
+
+					}
+				});
+				tv_send.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View arg0) {
+						if (TextUtils.isEmpty(et_content.getText())) {
+							showToast(Aty_Course_Main.this, "讨论内容不能为空！",
+									Toast.LENGTH_SHORT);
+							return;
+						}
+						final ProgressDialog pd = new ProgressDialog(
+								Aty_Course_Main.this).show(
+								Aty_Course_Main.this, null, "正在发送...");
+						new Net_Send_Discuss_For_Course(
+								email,
+								token,
+								schoolId,
+								deptId,
+								courseId,
+								et_content.getText().toString(),
+								String.valueOf(rb_grade.getRating()),
+								new Net_Send_Discuss_For_Course.SuccessCallback() {
+
+									@Override
+									public void onSuccess() {
+										pd.dismiss();
+										dlg_sendDiscuss.dismiss();
+										showToast(Aty_Course_Main.this,
+												"发送成功！", Toast.LENGTH_SHORT);
+
+									}
+								},
+								new Net_Send_Discuss_For_Course.FailCallback() {
+
+									@Override
+									public void onFail(int error) {
+										pd.dismiss();
+										showToast(Aty_Course_Main.this,
+												"发送失败！", Toast.LENGTH_SHORT);
+
+									}
+								});
+
 					}
 				});
 				dlg_sendDiscuss.show();
-				
+
 			}
 		});
 		btn_send_note.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				dlg_menu.dismiss();
-				View view_send_note = getLayoutInflater().inflate(R.layout.dlg_send_course_note,null);
-				final Dialog dlg_sendnote = new Dialog(Aty_Course_Main.this, R.style.transparentFrameWindowStyle);
-				dlg_sendnote.setContentView(view_send_note, new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+				View view_send_note = getLayoutInflater().inflate(
+						R.layout.dlg_send_course_note, null);
+				final Dialog dlg_sendnote = new Dialog(Aty_Course_Main.this,
+						R.style.transparentFrameWindowStyle);
+				dlg_sendnote.setContentView(view_send_note, new LayoutParams(
+						LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 				dlg_sendnote.setCanceledOnTouchOutside(true);
-				TextView tv_send = (TextView)view_send_note.findViewById(R.id.tv_dlg_send_course_note_send);
-				TextView tv_cancel = (TextView)view_send_note.findViewById(R.id.tv_dlg_send_course_note_cancel);
-				EditText et_content = (EditText)view_send_note.findViewById(R.id.et_dlg_send_course_note_content);
+				TextView tv_send = (TextView) view_send_note
+						.findViewById(R.id.tv_dlg_send_course_note_send);
+				TextView tv_cancel = (TextView) view_send_note
+						.findViewById(R.id.tv_dlg_send_course_note_cancel);
+				final EditText et_content = (EditText) view_send_note
+						.findViewById(R.id.et_dlg_send_course_note_content);
 				tv_send.setOnClickListener(new View.OnClickListener() {
-					
+
 					@Override
 					public void onClick(View arg0) {
-						// TODO Auto-generated method stub
-						
+						if (TextUtils.isEmpty(et_content.getText())) {
+							showToast(Aty_Course_Main.this, "笔记内容不能为空！",
+									Toast.LENGTH_SHORT);
+							return;
+						}
+						final ProgressDialog pd = new ProgressDialog(Aty_Course_Main.this).show(Aty_Course_Main.this, null, "正在发送...");
+						new Net_Send_Note_For_Course(email, token, schoolId,deptId, courseId, et_content.getText().toString(),
+								new Net_Send_Note_For_Course.SuccessCallback() {
+
+									@Override
+									public void onSuccess() {
+										pd.dismiss();
+										dlg_sendnote.dismiss();
+										showToast(Aty_Course_Main.this,
+												"发送成功！", Toast.LENGTH_SHORT);
+
+									}
+								}, new Net_Send_Note_For_Course.FailCallback() {
+
+									@Override
+									public void onFail(int error) {
+										pd.dismiss();
+										showToast(Aty_Course_Main.this,
+												"发送失败！", Toast.LENGTH_SHORT);
+
+									}
+								});
+
 					}
 				});
 				tv_cancel.setOnClickListener(new View.OnClickListener() {
-					
+
 					@Override
 					public void onClick(View arg0) {
 						dlg_sendnote.dismiss();
-						
+
 					}
 				});
 				dlg_sendnote.show();
-				
+
 			}
 		});
 		btn_collect_course.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				
+				final ProgressDialog pd = new ProgressDialog(Aty_Course_Main.this).show(Aty_Course_Main.this, null, "拼命收藏...");
+				new Net_Collect_Course(email, token, schoolId, deptId, courseId, new Net_Collect_Course.SuccessCallback() {
+					
+					@Override
+					public void onSuccess() {
+						showToast(Aty_Course_Main.this, "收藏成功！", Toast.LENGTH_SHORT);
+						dlg_menu.dismiss();
+						pd.dismiss();
+						
+					}
+				}, new Net_Collect_Course.FailCallback() {
+					
+					@Override
+					public void onFail(int error) {
+						showToast(Aty_Course_Main.this, "收藏失败！", Toast.LENGTH_SHORT);
+						pd.dismiss();
+					}
+				});
+
 			}
 		});
 		btn_share_course.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				
+				shareCourse();
+
 			}
 		});
+		//菜单取消按钮
 		btn_cancel.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				dlg_menu.dismiss();
-				
+
 			}
-		});	
+		});
 	}
+	
+	private void shareCourse(){
+		String contentDetails = courseName;//详细内容
+        String contentBrief = courseName;//简短内容
+        String shareUrl = "http://www.baidu.com";//URL
+        Intent it = new Intent(Intent.ACTION_SEND);
+        it.setType("text/plain");
+        List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(it, 0);
+        if (!resInfo.isEmpty()) {
+            List<Intent> targetedShareIntents = new ArrayList<Intent>();
+            for (ResolveInfo info : resInfo) {//逐个遍历选择到的应用
+                Intent targeted = new Intent(Intent.ACTION_SEND);
+                targeted.setType("text/plain");
+                ActivityInfo activityInfo = info.activityInfo;//得到应用的包名和信息
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+                // judgments : activityInfo.packageName, activityInfo.name, etc.
+                if (activityInfo.packageName.contains("bluetooth") || activityInfo.name.contains("bluetooth")) {
+                    continue;
+                }
+                if (activityInfo.packageName.contains("Android") || activityInfo.name.contains("Android")) {
+					return;
+				}
+                if (activityInfo.packageName.contains("gm") || activityInfo.name.contains("mail")) {
+                    targeted.putExtra(Intent.EXTRA_TEXT, contentDetails);
+                } else if (activityInfo.packageName.contains("zxing")) {
+                    targeted.putExtra(Intent.EXTRA_TEXT, shareUrl);
+                } else {
+                    targeted.putExtra(Intent.EXTRA_TEXT, contentBrief);
+                }
+                targeted.setPackage(activityInfo.packageName);
+                targetedShareIntents.add(targeted);
+            }
+            Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0), "Select app to share");
+            if (chooserIntent == null) {
+                return;
+            }
+            // A Parcelable[] of Intent or LabeledIntent objects as set with
+            // putExtra(String, Parcelable[]) of additional activities to place
+            // a the front of the list of choices, when shown to the user with a
+            // ACTION_CHOOSER.
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[] {}));
+            try {
+                startActivity(chooserIntent);
+            } catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(this, "Can't find share component to share", Toast.LENGTH_SHORT).show();
+            }
+        }
+	}
+	
+
 	private void AsyncImageLoad(ImageView ivHead, String path) {
 		AsyncImageTask asyncImageTask = new AsyncImageTask(ivHead);
 		asyncImageTask.execute(path);
@@ -342,6 +519,17 @@ public class Aty_Course_Main extends FragmentActivity {
 			}
 		}
 
+	}
+
+	public static void showToast(Context context, String text, int duration) {
+		if (mToast == null) {
+			mToast = Toast.makeText(context, text, duration);
+		} else {
+			mToast.setText(text);
+			mToast.setDuration(duration);
+		}
+
+		mToast.show();
 	}
 
 }

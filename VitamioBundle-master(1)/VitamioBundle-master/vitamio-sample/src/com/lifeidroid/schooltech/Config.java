@@ -6,8 +6,8 @@ import android.content.SharedPreferences.Editor;
 public class Config {
 	public static final String CHARSET = "UTF-8";
 	public static final String APPID = "com.lifeidorid.schooltech";
-	//public static final String URL = "http://192.168.253.1:8080/schooltech/index.jsp";
-	public static final String URL = "http://schooltech.sinaapp.com/schooltech/WebContent/";
+	public static final String URL = "http://192.168.253.1:8080/schooltech/index.jsp";
+	//public static final String URL = "http://schooltech.sinaapp.com/schooltech/WebContent/";
 	public static final int ERROR0 = 0;
 	public static final int ERROR1 = 2;
 	public static final int ERROR2 = 3;
@@ -73,13 +73,16 @@ public class Config {
 	public static final String KEY_CHAPTERTIME = "chaptertime";
 	public static final String ACTION_GETCOURSECHAPTER = "getcourchapter";
 	public static final String ACTION_SENDCOMMENT = "sendcomment";
-	public static final String MSG = "msg";
+	public static final String KEY_MSG = "msg";
 	public static final int RESOULT_NEED_REFRESH = 1;
 	public static final String KEY_WHETHERCOLLECTED = "whethercollected";
 	public static final int COLLECTED = 1;
 	public static final int CANCELCOLLECTED = 0;
 	public static final String KEY_COLLECTNOTE = "collectnote";
 	public static final String KEY_CHAPTER_URL = "chapterurl";
+	public static final String ACTION_SENDDISCUSS = "senddiscuss";
+	public static final String ACTION_SENDNOTE = "sendnote";
+	public static final String ACTION_COLLECT_COURSE = "collectcourse";
 
 	/**
 	 * 存取Email

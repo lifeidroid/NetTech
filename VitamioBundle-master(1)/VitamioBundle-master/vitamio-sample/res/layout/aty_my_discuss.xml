@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/iv_my_discuss_cancel_logo"
-            android:text="@string/cacel"
+            android:text="@string/cancel"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/Bule" />
 

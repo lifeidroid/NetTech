@@ -11,28 +11,26 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:text="答疑解惑"
+        android:text="@string/send_discuss"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/Bule" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="请给课程评分："
+            android:text="@string/grade_for_course"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/light_Blank" />
 
         <RatingBar
-            style="@style/enable_roomRatingBar"
             android:id="@+id/rb_dlg_send_course_discuss_grade"
+            style="@style/enable_roomRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true" />
@@ -46,12 +44,12 @@
         android:background="@color/light_Blank" />
 
     <EditText
-        android:layout_width="fill_parent"
+        android:id="@+id/et_dlg_send_course_discuss_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@color/White"
         android:gravity="top"
-        android:id="@+id/et_dlg_send_course_discuss_content"
-        android:hint="请提出您学习过程中的疑问或见解..."
+        android:hint="@string/please_write_down_your_question_for_course"
         android:lines="4"
         android:paddingLeft="5dp" />
 
@@ -66,12 +64,13 @@
         android:orientation="horizontal" >
 
         <TextView
+            android:id="@+id/tv_dlg_send_course_discuss_send"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:background="@drawable/dlg_send_btn_selector"
             android:gravity="center"
-            android:id="@+id/tv_dlg_send_course_discuss_send"
-            android:text="提交"
+            android:text="@string/send"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/Bule" />
 
@@ -81,12 +80,13 @@
             android:background="@color/light_Blank" />
 
         <TextView
+            android:id="@+id/tv_dlg_send_course_discuss_cancel"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:id="@+id/tv_dlg_send_course_discuss_cancel"
+            android:background="@drawable/dlg_cancel_btn_selector"
             android:gravity="center"
-            android:text="取消"
+            android:text="@string/cancel"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/Bule" />
     </LinearLayout>
