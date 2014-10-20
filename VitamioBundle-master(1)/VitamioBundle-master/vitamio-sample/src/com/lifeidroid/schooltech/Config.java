@@ -83,6 +83,8 @@ public class Config {
 	public static final String ACTION_SENDDISCUSS = "senddiscuss";
 	public static final String ACTION_SENDNOTE = "sendnote";
 	public static final String ACTION_COLLECT_COURSE = "collectcourse";
+	public static final String ACTION_MODIFICATION = "modification";
+	public static final String KEY_SEX = "sex";
 
 	/**
 	 * 存取Email

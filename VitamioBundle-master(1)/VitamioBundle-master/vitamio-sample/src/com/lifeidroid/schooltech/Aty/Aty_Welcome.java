@@ -7,6 +7,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.LinearLayout;
+import cn.jpush.android.api.JPushInterface;
 
 import com.lifeidroid.schooltech.R;
 
@@ -17,7 +18,7 @@ public class Aty_Welcome extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.aty_welcome);
-		lay_welcome = (LinearLayout)findViewById(R.id.lay_welcome);
+		lay_welcome = (LinearLayout) findViewById(R.id.lay_welcome);
 		AlphaAnimation Alpha = new AlphaAnimation(1.0f, 1.0f);
 		Alpha.setDuration(2000);
 		lay_welcome.startAnimation(Alpha);
@@ -34,7 +35,7 @@ public class Aty_Welcome extends Activity {
 
 		@Override
 		public void onAnimationEnd(Animation animation) {
-			skip(); 
+			skip();
 		}
 
 		@Override
@@ -47,5 +48,17 @@ public class Aty_Welcome extends Activity {
 	private void skip() {
 		startActivity(new Intent(this, Aty_Login.class));
 		finish();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		JPushInterface.onResume(this);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		JPushInterface.onPause(this);
 	}
 }

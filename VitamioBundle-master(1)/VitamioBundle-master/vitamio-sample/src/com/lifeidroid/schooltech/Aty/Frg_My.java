@@ -70,7 +70,6 @@ public class Frg_My extends Fragment {
 		lay_collect = (RelativeLayout)view.findViewById(R.id.lay_frg_my_collect);
 		lay_plan = (RelativeLayout)view.findViewById(R.id.lay_frg_my_plan);
 		lay_set = (RelativeLayout)view.findViewById(R.id.lay_frg_my_set);
-		System.out.println("----》head"+head);
 		AsyncImageLoad(iv_userHead, head);
 		tv_userNike.setText(nikename);
 		tv_userMotto.setText(motto);
@@ -78,6 +77,19 @@ public class Frg_My extends Fragment {
 	}
 
 	private void initListener() {
+		iv_userHead.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				intent = new Intent(getActivity(),Aty_My_Change_Info.class);
+				intent.putExtra(Config.KEY_EMAILMD5, email);
+				intent.putExtra(Config.KEY_TOKEN, token);
+				intent.putExtra(Config.KEY_NIKENAME, nikename);
+				intent.putExtra(Config.KEY_MOTTO, motto);
+				startActivity(intent);
+				
+			}
+		});
 		lay_discuss.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

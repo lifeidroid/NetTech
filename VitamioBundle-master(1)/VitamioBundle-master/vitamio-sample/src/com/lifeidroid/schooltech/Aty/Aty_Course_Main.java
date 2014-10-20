@@ -1,18 +1,12 @@
 package com.lifeidroid.schooltech.Aty;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -430,7 +424,7 @@ public class Aty_Course_Main extends FragmentActivity {
 
 			@Override
 			public void onClick(View arg0) {
-				shareCourse();
+				// TODO Auto-generated method stub
 
 			}
 		});
@@ -445,53 +439,7 @@ public class Aty_Course_Main extends FragmentActivity {
 		});
 	}
 	
-	private void shareCourse(){
-		String contentDetails = courseName;//详细内容
-        String contentBrief = courseName;//简短内容
-        String shareUrl = "http://www.baidu.com";//URL
-        Intent it = new Intent(Intent.ACTION_SEND);
-        it.setType("text/plain");
-        List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(it, 0);
-        if (!resInfo.isEmpty()) {
-            List<Intent> targetedShareIntents = new ArrayList<Intent>();
-            for (ResolveInfo info : resInfo) {//逐个遍历选择到的应用
-                Intent targeted = new Intent(Intent.ACTION_SEND);
-                targeted.setType("text/plain");
-                ActivityInfo activityInfo = info.activityInfo;//得到应用的包名和信息
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-                // judgments : activityInfo.packageName, activityInfo.name, etc.
-                if (activityInfo.packageName.contains("bluetooth") || activityInfo.name.contains("bluetooth")) {
-                    continue;
-                }
-                if (activityInfo.packageName.contains("Android") || activityInfo.name.contains("Android")) {
-					return;
-				}
-                if (activityInfo.packageName.contains("gm") || activityInfo.name.contains("mail")) {
-                    targeted.putExtra(Intent.EXTRA_TEXT, contentDetails);
-                } else if (activityInfo.packageName.contains("zxing")) {
-                    targeted.putExtra(Intent.EXTRA_TEXT, shareUrl);
-                } else {
-                    targeted.putExtra(Intent.EXTRA_TEXT, contentBrief);
-                }
-                targeted.setPackage(activityInfo.packageName);
-                targetedShareIntents.add(targeted);
-            }
-            Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0), "Select app to share");
-            if (chooserIntent == null) {
-                return;
-            }
-            // A Parcelable[] of Intent or LabeledIntent objects as set with
-            // putExtra(String, Parcelable[]) of additional activities to place
-            // a the front of the list of choices, when shown to the user with a
-            // ACTION_CHOOSER.
-            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[] {}));
-            try {
-                startActivity(chooserIntent);
-            } catch (android.content.ActivityNotFoundException ex) {
-                Toast.makeText(this, "Can't find share component to share", Toast.LENGTH_SHORT).show();
-            }
-        }
-	}
+
 	
 
 	private void AsyncImageLoad(ImageView ivHead, String path) {

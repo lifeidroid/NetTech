@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/White" >
+
+        <ImageView
+            android:id="@+id/iv_aty_my_change_info_cancel_logo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/img_back" />
+
+        <TextView
+            android:id="@+id/tv_aty_my_change_info_cancel_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_aty_my_change_info_cancel_logo"
+            android:text="@string/cancel"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="修改资料 "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/Bule" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="昵    称:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <EditText
+            android:id="@+id/et_aty_my_change_info_nikename"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/et_shape"
+            android:hint="10字符内..."
+            android:paddingLeft="3dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="座右铭:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <EditText
+            android:id="@+id/et_aty_my_change_info_motto"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/et_shape"
+            android:gravity="top"
+            android:lines="3"
+            android:paddingLeft="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="性   别:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+              <RadioGroup
+                android:id="@+id/rg_aty_my_change_info_sex"
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/rb_aty_my_change_info_boy"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rb_left"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="男"
+                    android:textColor="@color/Blank" />
+
+                <RadioButton
+                    android:id="@+id/rb_aty_my_change_info_girl"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rb_right"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="女"
+                    android:textColor="@color/Blank" />
+            </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="学   校:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+         <!-- 定义一个城市信息下拉菜单-->    
+    <Spinner     
+        android:id = "@+id/sp_aty_my_change_info_school"     
+        android:layout_width = "fill_parent"   
+        android:paddingLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_height ="fill_parent" >     
+    </Spinner >  
+    </LinearLayout>
+
+        <Button android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:text="@string/send"
+            android:layout_margin="20dp"
+            android:background="@drawable/btn_login"
+            android:id="@+id/btn_aty_my_change_info_send"/>
+</LinearLayout>

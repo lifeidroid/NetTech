@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import cn.jpush.android.api.JPushInterface;
 
 import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
@@ -78,8 +79,8 @@ public class Aty_Login extends Activity {
 							Toast.LENGTH_SHORT);
 					return;
 				}
-				final ProgressDialog pg = new ProgressDialog(Aty_Login.this).show(
-						Aty_Login.this, null, "正在登录...");
+				final ProgressDialog pg = new ProgressDialog(Aty_Login.this)
+						.show(Aty_Login.this, null, "正在登录...");
 				new Net_Login(et_email.getText().toString(), et_password
 						.getText().toString(), new Net_Login.SuccessCallback() {
 
@@ -97,7 +98,8 @@ public class Aty_Login extends Activity {
 						intent.putExtra(Config.KEY_HEAD, head);
 						intent.putExtra(Config.KEY_TOKEN, token);
 						intent.putExtra(Config.KEY_MOTTO, motto);
-						intent.putExtra(Config.KEY_EMAILMD5, et_email.getText().toString());
+						intent.putExtra(Config.KEY_EMAILMD5, et_email.getText()
+								.toString());
 						startActivity(intent);
 						finish();
 
@@ -147,6 +149,18 @@ public class Aty_Login extends Activity {
 		}
 
 		mToast.show();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		JPushInterface.onResume(this);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		JPushInterface.onPause(this);
 	}
 
 }

@@ -11,6 +11,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import cn.jpush.android.api.JPushInterface;
 
 import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
@@ -91,9 +92,10 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 		case KeyEvent.KEYCODE_BACK:
 			final View DialogView = LayoutInflater.from(Aty_Main.this).inflate(
 					R.layout.dlg_exist, null);
-			final Dialog dialog = new Dialog(Aty_Main.this, R.style.transparentFrameWindowStyle);
-			dialog.setContentView(DialogView,new LayoutParams(LayoutParams.FILL_PARENT,
-					LayoutParams.WRAP_CONTENT));
+			final Dialog dialog = new Dialog(Aty_Main.this,
+					R.style.transparentFrameWindowStyle);
+			dialog.setContentView(DialogView, new LayoutParams(
+					LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 			dialog.setCanceledOnTouchOutside(true);
 
 			tv_exist = (TextView) DialogView.findViewById(R.id.tv_dlg_exit);
@@ -176,6 +178,18 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 
 			}
 		});
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		JPushInterface.onResume(this);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		JPushInterface.onPause(this);
 	}
 
 }

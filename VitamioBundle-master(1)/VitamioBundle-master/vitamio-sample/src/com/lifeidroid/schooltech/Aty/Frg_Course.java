@@ -113,7 +113,6 @@ public class Frg_Course extends Fragment {
 		iv_arrow.setImageResource(R.drawable.img_arrow_down);
 		tv_schoolName.setText(default_schoolName);
 		lv_school.setVisibility(View.GONE);
-		
 
 		fTransaction = fManager.beginTransaction();
 		frg_Course_New = new Frg_Course_New();
@@ -138,18 +137,19 @@ public class Frg_Course extends Fragment {
 		slidingMenu.setMenu(R.layout.slidingmenu);
 		slidingMenu.setFadeDegree(0.35f);
 		lv_dept = (ListView) getActivity().findViewById(R.id.lv_slidmenu_dept);
-		pb_slidingmenuBar = (ProgressBar)getActivity().findViewById(R.id.pb_slidingmenu);
+		pb_slidingmenuBar = (ProgressBar) getActivity().findViewById(
+				R.id.pb_slidingmenu);
 		lv_dept.setAdapter(adp_Dept);
 
 	}
 
 	private void initListener() {
 		iv_search.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
-				startActivity(new Intent(getActivity(),Aty_Search.class));
-				
+				startActivity(new Intent(getActivity(), Aty_Search.class));
+
 			}
 		});
 		lay_shool_select.setOnClickListener(new View.OnClickListener() {
@@ -200,7 +200,7 @@ public class Frg_Course extends Fragment {
 				tv_schoolName.setText(default_schoolName);
 				Config.cacheDefaultSchoolId(getActivity(), default_schoolID);
 				Config.cacheDefaultSchoolName(getActivity(), default_schoolName);
-				lv_school.setVisibility(View.GONE);
+				lv_school.setVisibility(View.GONE); 
 				switch_School = false;
 				iv_arrow.setImageResource(R.drawable.img_arrow_down);
 				lay_course_main.setVisibility(View.VISIBLE);
@@ -335,11 +335,13 @@ public class Frg_Course extends Fragment {
 		});
 
 	}
+
 	@Override
 	public void onResume() {
 		Visible = true;
 		super.onResume();
 	}
+
 	@Override
 	public void onPause() {
 		Visible = false;

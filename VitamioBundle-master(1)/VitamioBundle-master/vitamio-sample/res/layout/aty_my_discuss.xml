@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Gray"
+    android:gravity="center_horizontal"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -20,7 +21,7 @@
             android:src="@drawable/img_back" />
 
         <TextView
-            android:id="@+id/tv_my_note_cancel_text"
+            android:id="@+id/tv_my_discuss_cancel_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -37,5 +38,36 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/Bule" />
     </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_aty_my_discuss"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_margin="5dp"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_aty_my_discuss_question"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rb_left"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="我的提问"
+            android:textColor="@color/Blank" />
+
+        <RadioButton
+            android:id="@+id/rb_aty_my_discuss_message"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rb_right"
+            android:button="@null"
+            android:gravity="center"
+            android:text="我的消息"
+            android:textColor="@color/Blank" />
+    </RadioGroup>
 
 </LinearLayout>

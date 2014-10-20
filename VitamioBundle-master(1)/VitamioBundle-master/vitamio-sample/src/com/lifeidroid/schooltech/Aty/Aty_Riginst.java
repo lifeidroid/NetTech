@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import cn.jpush.android.api.JPushInterface;
 
 import com.lifeidroid.schooltech.R;
 import com.lifeidroid.schooltech.Net.Net_Reginst;
@@ -74,8 +74,8 @@ public class Aty_Riginst extends Activity {
 							Toast.LENGTH_SHORT);
 					return;
 				}
-				final ProgressDialog pg = new ProgressDialog(Aty_Riginst.this).show(
-						Aty_Riginst.this, null, "正在注册..");
+				final ProgressDialog pg = new ProgressDialog(Aty_Riginst.this)
+						.show(Aty_Riginst.this, null, "正在注册..");
 				new Net_Reginst(et_email.getText().toString(), et_passoword
 						.getText().toString(),
 						new Net_Reginst.SuccessCallback() {
@@ -123,5 +123,17 @@ public class Aty_Riginst extends Activity {
 		}
 
 		mToast.show();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		JPushInterface.onResume(this);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		JPushInterface.onPause(this);
 	}
 }

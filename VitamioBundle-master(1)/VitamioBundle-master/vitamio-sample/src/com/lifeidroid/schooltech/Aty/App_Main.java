@@ -3,16 +3,25 @@ package com.lifeidroid.schooltech.Aty;
 import java.io.File;
 
 import android.app.Application;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Environment;
+import cn.jpush.android.api.JPushInterface;
 
 public class App_Main extends Application {
 	private String cachePath;
 	private String path;
 	private File dirFile;
+	private Intent intent;
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
+
+		JPushInterface.setDebugMode(true);
+		JPushInterface.init(this);
+
+
 		path = getSDPath() + "/SchoolTech/";
 		dirFile = new File(path);
 		if (!dirFile.exists()) {

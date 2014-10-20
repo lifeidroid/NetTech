@@ -79,6 +79,7 @@ public class Frg_Course_Note extends Fragment implements
 		lv_content.setPullLoadEnable(true);
 		lv_content.setPullRefreshEnable(true);
 		lv_content.setXListViewListener(this);
+		pb_contentBar.setVisibility(View.VISIBLE);
 		loaddata(Config.REFRESH);
 	}
 	private void initListener(){
@@ -94,7 +95,7 @@ public class Frg_Course_Note extends Fragment implements
 	}
 
 	private void loaddata(final int aciton) {
-		pb_contentBar.setVisibility(View.VISIBLE);
+
 		new Net_GetCourseNote(email, token, schoolId, deptId, courseId, 1, 20,
 				new Net_GetCourseNote.SuccessCallback() {
 

@@ -18,6 +18,7 @@
             android:layout_height="fill_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:paddingLeft="5dp"
             android:background="@drawable/et_shape" />
 
         <ImageView
