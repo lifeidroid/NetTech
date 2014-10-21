@@ -1,11 +1,11 @@
 package com.lifeidroid.schooltech.Aty;
 
-import com.lifeidroid.schooltech.R;
-
-import android.app.Activity;
 import android.os.Bundle;
 
-public class Aty_My_plane extends Activity{
+import com.lifeidroid.schooltech.BaseActivity;
+import com.lifeidroid.schooltech.R;
+
+public class Aty_My_plane extends BaseActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

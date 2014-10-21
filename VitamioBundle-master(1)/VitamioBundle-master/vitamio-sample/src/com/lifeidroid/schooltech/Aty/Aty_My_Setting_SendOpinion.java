@@ -1,9 +1,8 @@
 package com.lifeidroid.schooltech.Aty;
 
-import com.lifeidroid.schooltech.R;
-
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,7 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Aty_SendOpinion extends Activity {
+import com.lifeidroid.schooltech.BaseActivity;
+import com.lifeidroid.schooltech.Config;
+import com.lifeidroid.schooltech.R;
+import com.lifeidroid.schooltech.Net.Net_SendOpinion;
+
+public class Aty_My_Setting_SendOpinion extends BaseActivity {
 	private String email;
 	private String token;
 	private ImageView iv_back;
@@ -20,6 +24,7 @@ public class Aty_SendOpinion extends Activity {
 	private TextView tv_send;
 	private EditText et_content;
 	private static Toast mToast;
+	private Intent intent;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,7 +34,9 @@ public class Aty_SendOpinion extends Activity {
 		initListeners();
 	}
 	private void initValues(){
-		
+		intent = getIntent();
+		email = intent.getExtras().getString(Config.KEY_EMAILMD5);
+		token = intent.getExtras().getString(Config.KEY_TOKEN);
 	}
 	private void initViews(){
 		iv_back = (ImageView) findViewById(R.id.iv_aty_opinion_cancel_logo);
@@ -44,8 +51,27 @@ public class Aty_SendOpinion extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				if (TextUtils.isEmpty(et_content.getText())) {
-					showToast(Aty_SendOpinion.this, "内容不能为空！", Toast.LENGTH_SHORT);
+					showToast(Aty_My_Setting_SendOpinion.this, "内容不能为空！", Toast.LENGTH_SHORT);
 				}
+				final ProgressDialog pg = new ProgressDialog(Aty_My_Setting_SendOpinion.this).show(Aty_My_Setting_SendOpinion.this, null, "正在提交...");
+				new Net_SendOpinion(email, token, et_content.getText().toString(), new Net_SendOpinion.SuccessCallback() {
+					
+					@Override
+					public void onSuccess() {
+						pg.dismiss();
+						showToast(Aty_My_Setting_SendOpinion.this, "提交成功，谢谢您的意见！", Toast.LENGTH_SHORT);
+						finish();
+						
+					}
+				}, new Net_SendOpinion.FailCallback() {
+					
+					@Override
+					public void onFail(int error) {
+						pg.dismiss();
+						showToast(Aty_My_Setting_SendOpinion.this, "提交失败，请重试！", Toast.LENGTH_SHORT);
+						
+					}
+				});
 				
 			}
 		});

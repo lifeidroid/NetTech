@@ -1,6 +1,5 @@
 package com.lifeidroid.schooltech.Aty;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,13 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lifeidroid.schooltech.BaseActivity;
 import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
 import com.lifeidroid.schooltech.Net.NetGetImage;
 import com.lifeidroid.schooltech.Net.Net_Send_Discuss;
 import com.lifeidroid.schooltech.Tools.CircleImageView;
 
-public class Aty_CourseDiscuss_Reply extends Activity {
+public class Aty_CourseDiscuss_Reply extends BaseActivity {
 	private Intent mIntent;
 	private String email;
 	private String token;

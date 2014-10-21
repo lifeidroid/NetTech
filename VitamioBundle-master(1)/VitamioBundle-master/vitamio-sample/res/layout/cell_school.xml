@@ -8,6 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:background="@color/White"
         android:layout_marginRight="5dp" >
 
         <com.lifeidroid.schooltech.Tools.CircleImageView

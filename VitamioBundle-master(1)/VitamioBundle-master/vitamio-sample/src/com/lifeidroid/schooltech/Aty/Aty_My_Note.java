@@ -2,7 +2,6 @@ package com.lifeidroid.schooltech.Aty;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -10,10 +9,11 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.lifeidroid.schooltech.BaseActivity;
 import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
 
-public class Aty_My_Note extends FragmentActivity {
+public class Aty_My_Note extends BaseActivity {
 	private ImageView iv_back;
 	private TextView tv_back;
 	private RadioGroup rg_select;

@@ -2,13 +2,8 @@ package com.lifeidroid.schooltech.Aty;
 
 import java.io.File;
 
-import com.lifeidroid.schooltech.Config;
-import com.lifeidroid.schooltech.R;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +13,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Aty_My_Setting extends Activity {
+import com.lifeidroid.schooltech.BaseActivity;
+import com.lifeidroid.schooltech.Config;
+import com.lifeidroid.schooltech.R;
+
+public class Aty_My_Setting extends BaseActivity {
 	private ImageView iv_back;
 	private TextView tv_back;
 	private RelativeLayout lay_clearCache;
@@ -28,6 +27,8 @@ public class Aty_My_Setting extends Activity {
 	private RelativeLayout lay_about;
 	private Button btn_exit;
 	private String cachePath;
+	private String email;
+	private String token;
 	private File dirFile;
 	private Intent intent;
 	private static Toast mToast;
@@ -42,6 +43,8 @@ public class Aty_My_Setting extends Activity {
 	private void initVaues(){
 		intent = getIntent();
 		cachePath = intent.getExtras().getString(Config.KEY_CACHEPATH);
+		email = intent.getExtras().getString(Config.KEY_EMAILMD5);
+		token = intent.getExtras().getString(Config.KEY_TOKEN);
 		dirFile = new File(cachePath);
 	}
 	private void initViews(){
@@ -83,7 +86,7 @@ public class Aty_My_Setting extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				startActivity(new Intent(Aty_My_Setting.this,Aty_PushMessage.class));
+				startActivity(new Intent(Aty_My_Setting.this,Aty_My_Setting_PushMessage.class));
 				
 			}
 		});
@@ -91,7 +94,10 @@ public class Aty_My_Setting extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				startActivity(new Intent(Aty_My_Setting.this,Aty_SendOpinion.class));
+				intent = new Intent(Aty_My_Setting.this,Aty_My_Setting_SendOpinion.class);
+				intent.putExtra(Config.KEY_EMAILMD5, email);
+				intent.putExtra(Config.KEY_TOKEN,token);
+				startActivity(intent);
 				
 			}
 		});
@@ -106,7 +112,7 @@ public class Aty_My_Setting extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+				startActivity(new Intent(Aty_My_Setting.this,Aty_My_Setting_About.class));
 				
 			}
 		});
@@ -117,6 +123,7 @@ public class Aty_My_Setting extends Activity {
 				Editor editor =  getSharedPreferences(Config.APPID, Context.MODE_PRIVATE).edit();
 				editor.clear();
 				editor.commit();
+				exit();
 				startActivity(new Intent(Aty_My_Setting.this,Aty_Login.class));
 			}
 		});

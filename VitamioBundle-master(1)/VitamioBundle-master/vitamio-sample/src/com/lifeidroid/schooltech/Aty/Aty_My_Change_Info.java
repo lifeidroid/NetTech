@@ -1,16 +1,11 @@
 package com.lifeidroid.schooltech.Aty;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,11 +14,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lifeidroid.schooltech.BaseActivity;
 import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
 import com.lifeidroid.schooltech.Net.Net_Change_Info;
 
-public class Aty_My_Change_Info extends Activity {
+public class Aty_My_Change_Info extends BaseActivity {
 	private String email;
 	private String token;
 	private String nikename;

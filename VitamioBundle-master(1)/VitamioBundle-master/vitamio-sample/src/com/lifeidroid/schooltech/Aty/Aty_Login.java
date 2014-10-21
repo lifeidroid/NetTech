@@ -1,6 +1,5 @@
 package com.lifeidroid.schooltech.Aty;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,11 +11,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 import cn.jpush.android.api.JPushInterface;
 
+import com.lifeidroid.schooltech.BaseActivity;
 import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
 import com.lifeidroid.schooltech.Net.Net_Login;
 
-public class Aty_Login extends Activity {
+public class Aty_Login extends BaseActivity {
 	private Button btn_riginst;
 	private Button btn_login;
 	private EditText et_email;

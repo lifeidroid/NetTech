@@ -115,8 +115,11 @@ public class Frg_My extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(getActivity(),Aty_My_Collect.class));
-				
+				intent = new Intent(getActivity(),Aty_My_Collect.class);
+				intent.putExtra(Config.KEY_EMAILMD5, email);
+				intent.putExtra(Config.KEY_TOKEN, token);
+				intent.putExtra(Config.KEY_CACHEPATH, cachePath);
+				startActivity(intent);
 			}
 		});
 		lay_plan.setOnClickListener(new View.OnClickListener() {

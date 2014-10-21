@@ -93,9 +93,11 @@
         </activity>
         <activity android:name=".Aty.Aty_My_Change_Info" >
         </activity>
-        <activity android:name=".Aty.Aty_PushMessage" >
+        <activity android:name=".Aty.Aty_My_Setting_PushMessage" >
         </activity>
-        <activity android:name=".Aty.Aty_SendOpinion" >
+        <activity android:name=".Aty.Aty_My_Setting_SendOpinion" >
+        </activity>
+        <activity android:name=".Aty.Aty_My_Setting_About" >
         </activity>
 
         <!-- Required -->

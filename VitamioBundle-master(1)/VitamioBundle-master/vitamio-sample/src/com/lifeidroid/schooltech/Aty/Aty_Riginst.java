@@ -1,6 +1,5 @@
 package com.lifeidroid.schooltech.Aty;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -11,10 +10,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 import cn.jpush.android.api.JPushInterface;
 
+import com.lifeidroid.schooltech.BaseActivity;
 import com.lifeidroid.schooltech.R;
 import com.lifeidroid.schooltech.Net.Net_Reginst;
 
-public class Aty_Riginst extends Activity {
+public class Aty_Riginst extends BaseActivity {
 	private EditText et_email;
 	private EditText et_passoword;
 	private EditText et_repassword;

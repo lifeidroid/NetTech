@@ -16,10 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import cn.jpush.android.api.JPushInterface;
 
+import com.lifeidroid.schooltech.BaseActivity;
 import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
 
-public class Aty_Main extends android.support.v4.app.FragmentActivity {
+public class Aty_Main extends BaseActivity {
 	private LinearLayout lay_course;
 	private LinearLayout lay_my;
 	private ImageView iv_course_logo;

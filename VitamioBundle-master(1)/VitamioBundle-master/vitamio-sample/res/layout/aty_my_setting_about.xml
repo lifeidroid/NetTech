@@ -11,7 +11,7 @@
         android:background="@color/White" >
 
         <ImageView
-            android:id="@+id/iv_my_collect_cancel_logo"
+            android:id="@+id/iv_aty_about_cancel_logo"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
@@ -20,11 +20,11 @@
             android:src="@drawable/img_back" />
 
         <TextView
-            android:id="@+id/tv_my_collect_cancel_text"
+            android:id="@+id/tv_aty_about_cancel_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/iv_my_collect_cancel_logo"
+            android:layout_toRightOf="@id/iv_aty_about_cancel_logo"
             android:text="@string/cancel"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/Bule" />
@@ -33,37 +33,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/my_collect"
+            android:text="关于 "
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/Bule" />
-    </RelativeLayout>
-
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-
-        <com.lifeidroid.schooltech.Tools.ListViewFrame
-            android:id="@+id/lv_aty_my_collected_course"
-            android:layout_width="fill_parent"
+        </RelativeLayout>
+        <ImageView android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:divider="@color/Gray"
-            android:dividerHeight="4dp"
-            android:fadingEdge="none"
-            android:persistentDrawingCache="none"
-            android:scrollbars="none"
-            android:scrollingCache="false"
-            android:smoothScrollbar="true" />
-
-        <ProgressBar
-            style="@style/myProgressBarStyleSimple"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/pb_aty_my_collected_course"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="200dp"
-            android:indeterminateDuration="700" />
-    </FrameLayout>
+            android:src="@drawable/img_about"
+            android:id="@+id/iv_aty_my_setting_about_content"/>
+    
 
 </LinearLayout>

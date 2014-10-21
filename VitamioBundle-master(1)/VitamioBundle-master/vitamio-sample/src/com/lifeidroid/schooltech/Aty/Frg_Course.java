@@ -11,6 +11,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
@@ -52,6 +54,7 @@ public class Frg_Course extends Fragment {
 	private Frg_Course_Hot frg_Course_Hot;
 	private Frg_Course_Recommend fCourse_Recommend;
 	private Adp_Dept adp_Dept;
+	private Animation animation;
 
 	private LinearLayout lay_shool_select;
 	private SlidingMenu slidingMenu;
@@ -157,13 +160,21 @@ public class Frg_Course extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				if (switch_School) {// 如果学校列表已经展开
+					animation = AnimationUtils.loadAnimation(getActivity(), R.anim.list_close); 
+					lv_school.startAnimation(animation);
 					lv_school.setVisibility(View.GONE);
 					switch_School = false;
 					iv_arrow.setImageResource(R.drawable.img_arrow_down);
-					lay_course_main.setVisibility(View.VISIBLE);
+					//animation = AnimationUtils.loadAnimation(getActivity(), R.anim.course_close);
+					//lay_course_main.startAnimation(animation);
+					//lay_course_main.setVisibility(View.VISIBLE);
 				} else {
+					animation = AnimationUtils.loadAnimation(getActivity(), R.anim.list_open); 
+					lv_school.startAnimation(animation);
 					lv_school.setVisibility(View.VISIBLE);
-					lay_course_main.setVisibility(View.GONE);
+					//animation = AnimationUtils.loadAnimation(getActivity(), R.anim.course_open);
+					//lay_course_main.startAnimation(animation);
+					//lay_course_main.setVisibility(View.GONE);
 					switch_School = true;
 					iv_arrow.setImageResource(R.drawable.img_arrow_up);
 					new Net_GetSchool(email, token,
@@ -200,6 +211,8 @@ public class Frg_Course extends Fragment {
 				tv_schoolName.setText(default_schoolName);
 				Config.cacheDefaultSchoolId(getActivity(), default_schoolID);
 				Config.cacheDefaultSchoolName(getActivity(), default_schoolName);
+				animation = AnimationUtils.loadAnimation(getActivity(), R.anim.list_close); 
+				lv_school.startAnimation(animation);
 				lv_school.setVisibility(View.GONE); 
 				switch_School = false;
 				iv_arrow.setImageResource(R.drawable.img_arrow_down);

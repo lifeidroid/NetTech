@@ -227,7 +227,7 @@ public class Aty_Course_Main extends FragmentActivity {
 		view = getLayoutInflater().inflate(R.layout.dlg_course_menu, null);
 		dlg_menu = new Dialog(this, R.style.transparentFrameWindowStyle);
 		dlg_menu.setContentView(view, new LayoutParams(
-				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 		Window window = dlg_menu.getWindow();// 设置显示动画
 		window.setWindowAnimations(R.style.main_menu_animstyle);
 		WindowManager.LayoutParams wl = window.getAttributes();

@@ -8,26 +8,15 @@ import android.widget.TextView;
 import com.lifeidroid.schooltech.BaseActivity;
 import com.lifeidroid.schooltech.R;
 
-public class Aty_My_Discuss extends BaseActivity {
+public class Aty_My_Setting_About extends BaseActivity {
 	private ImageView iv_back;
 	private TextView tv_back;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.aty_my_discuss);
-		initValues();
-		initViews();
-		initListener();
-	}
-	private void initValues(){
-		iv_back = (ImageView)findViewById(R.id.iv_my_discuss_cancel_logo);
-		tv_back = (TextView)findViewById(R.id.tv_my_discuss_cancel_text);
-		
-	}
-	private void initViews(){
-		
-	}
-	private void initListener(){
+		setContentView(R.layout.aty_my_setting_about);
+		iv_back = (ImageView)findViewById(R.id.iv_aty_about_cancel_logo);
+		tv_back = (TextView) findViewById(R.id.tv_aty_about_cancel_text);
 		iv_back.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -45,4 +34,5 @@ public class Aty_My_Discuss extends BaseActivity {
 			}
 		});
 	}
+	
 }

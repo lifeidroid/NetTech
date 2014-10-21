@@ -1,6 +1,5 @@
 package com.lifeidroid.schooltech.Aty;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -10,10 +9,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 import cn.jpush.android.api.JPushInterface;
 
+import com.lifeidroid.schooltech.BaseActivity;
 import com.lifeidroid.schooltech.Config;
 import com.lifeidroid.schooltech.R;
 
-public class Aty_PushMessage extends Activity {
+public class Aty_My_Setting_PushMessage extends BaseActivity {
 	private ImageView iv_back;
 	private TextView tv_back;
 	private Switch sw_push;
@@ -27,7 +27,7 @@ public class Aty_PushMessage extends Activity {
 		initListener();
 	}
 	private void initVaues(){
-		sw_recivePush = Config.getCacheWhetheRecivePush(Aty_PushMessage.this);
+		sw_recivePush = Config.getCacheWhetheRecivePush(Aty_My_Setting_PushMessage.this);
 	}
 	private void initViews(){
 		iv_back = (ImageView) findViewById(R.id.iv_aty_pushmessage_cancel_logo);
@@ -45,7 +45,7 @@ public class Aty_PushMessage extends Activity {
 				}else {
 					JPushInterface.stopPush(getApplicationContext());
 				}
-				Config.cacheWhetheRecivePush(Aty_PushMessage.this, arg1);
+				Config.cacheWhetheRecivePush(Aty_My_Setting_PushMessage.this, arg1);
 				
 			}
 		});
