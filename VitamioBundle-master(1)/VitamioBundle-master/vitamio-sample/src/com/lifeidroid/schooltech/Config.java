@@ -62,6 +62,7 @@ public class Config {
 	public static final String KEY_CHAPTER_URL = "chapterurl";
 	public static final String KEY_WHETHERCOLLECTED = "whethercollected";
 	public static final String KEY_MSG = "msg";
+	public static final String KEY_PUSH = "push";
 
 	public static final String ACTION_LOGIN = "login";
 	public static final String ACTION_REGISTER = "register";
@@ -178,6 +179,20 @@ public class Config {
 	public static int getCacheDefaultDeptId(Context context) {
 		return context.getSharedPreferences(APPID, Context.MODE_PRIVATE)
 				.getInt(KEY_DEFAULT_DEPTID, 0);
+	}
+	/**
+	 * 存取是否接受推送消息
+	 * @param context
+	 * @param flag
+	 */
+	public static void cacheWhetheRecivePush(Context context ,boolean flag){
+		Editor editor = context.getSharedPreferences(APPID,
+				Context.MODE_PRIVATE).edit();
+		editor.putBoolean(KEY_PUSH, flag);
+		editor.commit();
+	}
+	public static boolean getCacheWhetheRecivePush(Context context){
+		return context.getSharedPreferences(APPID, Context.MODE_PRIVATE).getBoolean(KEY_PUSH, true);
 	}
 
 }

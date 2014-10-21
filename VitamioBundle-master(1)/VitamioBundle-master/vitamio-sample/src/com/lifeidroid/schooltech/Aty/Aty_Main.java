@@ -1,9 +1,12 @@
 package com.lifeidroid.schooltech.Aty;
 
+import java.io.File;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +26,9 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 	private ImageView iv_my_logo;
 	private TextView tv_course_name;
 	private TextView tv_my_name;
-	private App_Main mApplication;
 	private android.support.v4.app.FragmentManager fManager;
 	private android.support.v4.app.FragmentTransaction fTransaction;
 	private Bundle bundle;
-	private String cachePath;
 	private String token;
 	private String email;
 	private String motto;
@@ -40,6 +41,9 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 	private AlertDialog aDialog;
 	private TextView tv_exist;
 	private TextView tv_cancel;
+	private String cachePath;
+	private String path;
+	private File dirFile;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +53,7 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 		initView();
 		initListener();
 	}
-
 	private void initValues() {
-		mApplication = (App_Main) getApplication();
 		intent = getIntent();
 		Switch_Main = true;
 		token = intent.getExtras().getString(Config.KEY_TOKEN);
@@ -60,7 +62,14 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 		head = intent.getExtras().getString(Config.KEY_HEAD);
 		nikename = intent.getExtras().getString(Config.KEY_NIKENAME);
 		fManager = getSupportFragmentManager();
-		cachePath = mApplication.getCachePath();
+		
+
+		path = getSDPath() + "/SchoolTech/";
+		dirFile = new File(path);
+		if (!dirFile.exists()) {
+			dirFile.mkdirs();
+		}
+		cachePath = dirFile.toString();
 	}
 
 	private void initView() {
@@ -190,6 +199,15 @@ public class Aty_Main extends android.support.v4.app.FragmentActivity {
 	protected void onPause() {
 		super.onPause();
 		JPushInterface.onPause(this);
+	}
+	private String getSDPath() {
+		File sdDir = null;
+		boolean sdCardExist = Environment.getExternalStorageState().equals(
+				android.os.Environment.MEDIA_MOUNTED); // 判断sd卡是否存在
+		if (sdCardExist) {
+			sdDir = Environment.getExternalStorageDirectory();// 获取跟目录
+		}
+		return sdDir.toString();
 	}
 
 }

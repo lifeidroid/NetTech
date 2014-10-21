@@ -37,5 +37,152 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/Bule" />
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/lay_aty_my_setting_clearCache"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_shape" >
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_alignParentLeft="true"
+            android:text="清除缓存"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_arror_right" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/lay_aty_my_setting_pushmessage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/btn_shape" >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_alignParentLeft="true"
+            android:text="推送通知"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_arror_right" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/lay_aty_my_setting_opinion"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/btn_shape" >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_alignParentLeft="true"
+            android:text="意见反馈"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_arror_right" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/lay_aty_my_setting_update"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_shape" >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_alignParentLeft="true"
+            android:text="检查更新"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_arror_right" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/lay_aty_my_setting_about"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/btn_shape" >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_alignParentLeft="true"
+            android:text="关于"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Bule" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img_arror_right" />
+    </RelativeLayout>
+    <Button 
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_margin="25dp"
+        android:text="退出当前账号"
+        android:textColor="@color/White"
+        android:background="@drawable/btn_login"
+        android:id="@+id/btn_aty_my_setting_exit"/>
 </LinearLayout>
